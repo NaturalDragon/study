@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    function fn1(callback) {
+        setTimeout(() => {
+            console.log('fn1');
+            callback()
+        }, 1000);
+    }
+
+    function fn2(callback) {
+        setTimeout(() => {
+            console.log('fn2');
+            callback()
+        }, 1000);
+    }
+
+    function fn3(callback) {
+        setTimeout(() => {
+            console.log('fn3');
+            callback()
+        }, 1000);
+    }
+
+    // fn1(function () {
+    //     fn2(function () {
+    //         fn3()
+    //     })
+    // })
+
+
+    function fn4() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log('fn4')
+                resolve()
+            }, 1000);
+        })
+    }
+    function fn5(){
+        return new Promise((resolve,reject)=>{
+            setTimeout(() => {
+                console.log('fn5')
+                resolve()
+            }, 1000);
+        })
+    }
+    function fn6(){
+        return new Promise((resolve,reject)=>{
+            setTimeout(() => {
+                console.log('fn6')
+                reject()
+            }, 1000);
+        })
+    }
+    function fn7(){
+        return new Promise((resolve,reject)=>{
+            setTimeout(() => {
+                console.log('fn7')
+                resolve()
+            }, 1000);
+        })
+    }
+    function error(){
+        console.log('err');
+    
+    }
+       
+    fn4().then(fn5).then(fn6).then(fn7).catch(error)
+</script>

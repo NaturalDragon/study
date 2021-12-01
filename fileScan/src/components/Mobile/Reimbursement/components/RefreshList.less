@@ -1,0 +1,151 @@
+.page {
+  //  margin-top:60px ;
+  // height: 100%;
+  //  width: 100%;
+  //display: flex;
+  //flex-direction: column;
+  height: 100%;
+  // width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchRereshList {
+  padding: 0px 2%;
+  //  position: fixed;
+  height: 45px;
+  width: 96%;
+  background: #fff;
+  z-index: 1;
+  //  top: 0px;
+  //left: 0;
+}
+
+.searchRereshList::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px solid #cccccc;
+  color: #cccccc;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+}
+
+.listviewContainer {
+  flex: 1;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.conime {
+  top: 0;
+  position: fixed;
+
+  width: 100%;
+  height: 50px;
+  z-index: 10000000;
+}
+
+.content {
+  padding: 0px 15px;
+}
+
+.conItem {
+  padding-top: 10px;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.conItem::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px solid #cccccc;
+  color: #cccccc;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+}
+
+.itemFirst {
+  display: flex;
+}
+
+.itemI {
+  width: 8px;
+  height: 8px;
+  margin-right: 5px;
+  background: rgba(18, 47, 132, 1);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.itemTitle {
+  font-size: 15px;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+  line-height: 25px;
+}
+
+.itemSec {
+  display: flex;
+  line-height: 30px;
+}
+
+.itemTime {
+  height: 19px;
+  font-size: 13px;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: rgba(153, 153, 153, 1);
+}
+
+.tabWrap {
+  display: flex;
+  height: 50px;
+  line-height: 50px;
+}
+
+.tabItem {
+  width: 100%/6;
+  text-align: center;
+}
+
+.none {
+  display: none;
+}
+
+.block {
+  display: block;
+  width: 100%;
+}
+
+.reItem {
+  height: 50px;
+  line-height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-left: 10px;
+  color: #000;
+  font-size: 17px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.noresult {
+  font-size: 14px;
+  color: #888;
+  text-align: center;
+  border: none;
+}

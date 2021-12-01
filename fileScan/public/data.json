@@ -1,0 +1,63 @@
+{
+    "ReRoutes": [
+  {
+        "DownstreamPathTemplate": "/{url}", //下游地址万能模板
+        "DownstreamScheme": "http",
+        //下游地址以及端口号
+        //配置多个是为了实现负载均衡功能
+        //注：最好使用IP 而不是localhost
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "127.0.0.1",
+            "Port": 4004
+          }
+        ],
+        "UpstreamPathTemplate": "/tgjswxInvoiceAssistant/{url}", //上游地址万能模板
+        "UpstreamHttpMethod": [ "Get", "POST" ], //转发的请求类型
+        "LoadBalancer": "LeastConnection", //负载均衡模式
+        //服务名称 需要和consul中配置的服务名称一致
+        "ServiceName": "tgjswxInvoiceAssistant",
+        "UseServiceDiscovery": true, //是否启用服务发现
+        //身份验证 所需属性 不验证可去除
+        "AuthenticationOptions": {
+          //"AuthenticationProviderKey": "aaa", //自定义key
+          //"AllowScopes": [ "OpenApi" ] //服务名称
+        }
+      },
+  {
+        "DownstreamPathTemplate": "/{url}", //下游地址万能模板
+        "DownstreamScheme": "http",
+        //下游地址以及端口号
+        //配置多个是为了实现负载均衡功能
+        //注：最好使用IP 而不是localhost
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "127.0.0.1",
+            "Port": 4006
+          }
+        ],
+        "UpstreamPathTemplate": "/tgjswxInvoiceAssistantOpenApi/{url}", //上游地址万能模板
+        "UpstreamHttpMethod": [ "Get", "POST" ], //转发的请求类型
+        "LoadBalancer": "LeastConnection", //负载均衡模式
+        //服务名称 需要和consul中配置的服务名称一致
+        "ServiceName": "tgjswxInvoiceAssistantOpenApi",
+        "UseServiceDiscovery": true, //是否启用服务发现
+        //身份验证 所需属性 不验证可去除
+        "AuthenticationOptions": {
+          //"AuthenticationProviderKey": "aaa", //自定义key
+          //"AllowScopes": [ "OpenApi" ] //服务名称
+        }
+      }
+     
+     
+    ],
+  
+    "GlobalConfiguration": {
+      //"BaseUrl": "http://127.0.0.1:8086", //对外地址
+      //服务发现地址配置
+      "ServiceDiscoveryProvider": {
+        "Host": "127.0.0.1",
+        "Port": 8500
+      }
+    }
+  }

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>proxy</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    const alice = {
+        birthdate: '1990-04-06',
+        age: 20,
+        height: 170,
+        weight: 65,
+        bmi: 22.5,
+    };
+    const calculateAge = (birthdate) => {
+        const today = new Date();
+        let age = today.getFullYear() - birthdate.getFullYear();
+        const m = today.getMonth() - birthdate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthdate.getDate())) {
+            age--;
+        }
+        return age;
+    }
+    const hanler = {
+        get(target, key) {
+            if (key === 'age') {
+                return calculateAge(new Date(target.birthdate))
+            }
+            return target[key];
+        },
+        set(target, key, value) {
+            if (key === 'birthdate') {
+                throw new Error('Birthdate is readonly')
+            } else if (key === 'weight') {
+                const { height } = target;
+                target.bmi = Math.round(
+                    value / (height / 100 * height / 100) * 100
+                ) / 100;
+            }
+            return true;
+        },
+    
+    }
+    const proxy = new Proxy(alice, hanler);
+
+    const son = Object.create(proxy)
+
+    function createArry(...elements) {
+        let hanler = {
+            get(target, propKey, receiver) {
+                let index = Number(propKey);
+                if (index < 0) {
+                    propKey = String(target.length + index)
+                }
+                return Reflect.get(target, propKey, receiver)
+            }
+        }
+        let target = [];
+        target.push(...elements)
+        return new Proxy(target, hanler);
+    }
+
+    let arr = createArry('1', 2, 3)
+
+
+    let target=function (){return 'I am the target'};
+    var hanler1={
+        apply(target,ctx,args){
+           // return  'I am the proxy';
+        }
+    }
+
+    let p=new Proxy(target,hanler1);
+
+
+    const proxyConstruct=new Proxy(function(age,name){
+        this.name=name;
+        this.age=age;
+        return 'lizn'
+        // return {
+        //     value1:age*age
+        // }
+    },
+    {
+        construct(target,args){
+            return {
+                value:args[0]*10
+            }
+        }
+    })
+
+
+    let ppc= new  proxyConstruct(10);
+    
+
+    let obj=new  Proxy({},{
+        get(target,propKey,receiver){
+            return Reflect.get(target,propKey,receiver)
+        },
+        set(target,propKey,value,receiver){
+            return Reflect.set(target,propKey,value,receiver)
+        }
+    })
+</script>

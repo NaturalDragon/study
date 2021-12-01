@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原始值包装</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+
+        function test(){
+
+           var artArr= Array.prototype.slice.call(arguments);
+           var argArr=Array.from(arguments)
+           var ddd=Array.of('12',3,4,5)
+           console.log(artArr)
+           console.log(argArr)
+           console.log(ddd)
+        }
+
+        test(1,'3',4)
+
+        const arr1=[1,2,3,4,5]
+       const a2=Array.from(arr1,function(e){return e**this.ex},{ex:2})
+       const a3=Array.from(arr1,x=>{return x**2},{ex:2})
+
+      for (const [index,ele] of a2.entries()) {
+            console.log(index)
+            console.log(ele);
+      }
+
+      var data=[];
+      for (let i = 0; i < 3; i++) {
+         (data[i]=function(){
+             console.log(arguments.callee.a)
+         }).a=i
+          
+      }
+
+
+      function  fa(a){
+          var arg=arguments;
+          return a+10
+      }
+      
+      fa(11)
+
+      function func(...arg){
+          console.log(arg)
+      }
+      func(1, 2, 3);
+
+</script>

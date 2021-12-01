@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    
+    <title>js</title>
+  </head>
+  <body>
+    <div>
+      <div id="parent">
+        父元素
+        <div id="child">子元素</div>
+      </div>
+    </div>
+ </body>
+
+</html>
+<script>
+'use strict'
+console.log(1);
+
+//setTimeout1
+setTimeout(()=>{
+    console.log(2);
+    Promise.resolve().then(data => {
+        console.log(3);
+    });
+}); 
+
+//setTimeout2
+setTimeout(()=>{
+    console.log(4);
+}); 
+
+new Promise(function(resolve){
+  console.log(6)
+  resolve()
+}).then(function(){
+  console.log(5)
+})
+//  Promise.resolve().then(date=>{
+//   console.log(5)
+// })
+// 1，5，2，3，4
+
+</script>

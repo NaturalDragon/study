@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    Array.prototype.myMap = function () {
+        let arr = this;
+        let [callback, thisValue] = Array.prototype.slice.call(arguments)
+        let result = []
+        for (let i = 0; i < arr.length; i++) {
+            result.push(callback.call(thisValue, arr[i], i))
+        }
+        return result
+    }
+    let a1 = [1, 2, 3];
+    myMap(function (ele, index) {
+        ele = ele + 1
+    })
+</script>

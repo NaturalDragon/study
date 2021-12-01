@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    function deepCopy(target, map = new WeakMap()) {
+
+        if (typeof target === 'object') {
+            let cloneTarget = Array.isArray(target) ? [] : {}
+            if (map.get(target)) {
+                return map.get(target);
+            }
+            map.set(target, cloneTarget);
+            for (const key in target) {
+                cloneTarget[key] = deepCopy(target[key],map)
+            }
+            return cloneTarget;
+        } else {
+            return target;
+        }
+    }
+    var a = { count: 1, deep: { count: 2 }, children: [1, 2, 3, 4, 5] }
+    a['c'] = a;
+    console.time()
+    var b = deepCopy(a);
+    console.timeEnd()
+  
+</script>

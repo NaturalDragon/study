@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //类声明
+    // class Animal {
+    // }
+
+    //类表达式
+    // const Person = class { };
+
+    // 与函数表达式类似，类表达式在它们被求值前也不能引用。不过，与函数定义不同的是，虽然函数
+    // 声明可以提升，但类定义不能
+
+
+    //另一个跟函数声明不同的地方是，函数受函数作用域限制，而类受块作用域限制
+    {
+        function a() { }
+        class B {
+        }
+    }
+    // console.log(a)//ƒ a() { }
+    // console.log(B)// Uncaught ReferenceError: B is not defined
+
+
+    let Person = class PersonName {
+        identity() {
+            console.log(Person.name, PersonName.name)
+        }
+    }
+    let per = new Person();
+    per.identity();
+    //console.log(Person.name)//PersonName
+    //   console.log(PersonName.name);//Uncaught ReferenceError: PersonName is not defined
+
+    class ReactX {
+        constructor() {
+            this.fiber = 'fiber'
+            console.log(this.fiber)
+        }
+    }
+    let react = new ReactX();
+    let react2 = new ReactX
+
+    class Student {
+        constructor(ovverride) {
+            this.foo = 'foo';
+            if (ovverride) {
+                return {
+                    bar: 'bar'
+                }
+            }
+        }
+    }
+    let stu1 = new Student();
+    let stu2 = new Student(true);
+
+    let classList = [
+        class Teacher {
+            constructor(id) {
+                this.id = id;
+                console.log(this.id)
+            }
+        }
+    ]
+    function createInstance(classDefinition, id) {
+        return new classDefinition(id)
+    }
+    let instance = createInstance(classList[0], 999)
+
+    // 立即执行类
+    let b = new class ABC {
+        constructor(a) {
+            this.a = a;
+        }
+    }('inst')
+
+    const symbolKey = Symbol('symbolKey');
+    class Tea {
+        constructor(loc, b) {
+            this.loc = loc;
+            this.b = b
+            this.sayLoc = function () {
+                console.log(this.loc)
+            }
+            this.girlFriends = ['A', 'B']
+        }
+        a = 1
+        sayB() {
+            console.log(this.b)
+        }
+        [symbolKey]() {
+
+        }
+        ['cou' + 'key']() {
+
+        }
+        static sayHi() {
+            console.log('hi')
+        }
+        static create() {
+            return new Tea('loc1', 'b1')
+        }
+        set name(newName) {
+            this._name = newName
+        }
+        get name() {
+            return this._name
+        }
+        *createNicknameIterotro() {
+            yield 'Jack';
+            yield 'Jake';
+            yield 'J-Dog';
+        }
+        static *createJobIterotor() {
+            yield 'Butcher';
+            yield 'Baker';
+            yield 'Candlestick maker';
+        }
+    }
+    Tea.he = '喝茶'
+    Tea.study = function () { console.log('学习') }
+    Tea.prototype.zuoye = '作业'
+    Tea.prototype.piping = function () { console.log('打人') }
+    Tea.prototype.friends = ['Amy', 'Ben']
+    let tea1 = new Tea('loc', 'b')
+    let tea2 = new Tea('loc1', 'b1')
+
+    //Tea 通过babel转换，可以看到类块中定义的函数会定义到类的原型上，
+    //类块中的变量会存在于实例上
+    // 添加到 this 的所有内容都会存在于不同的实例上，静态方法定义在类本身上
+    /*
+var Tea = function () {
+    function Tea(loc, b) {
+        this.loc = loc;
+        this.b = b;
+        this.sayLoc = function () {
+            console.log(this.loc);
+        };
+    }
+    var _proto = Tea.prototype;
+    _proto.sayB = function sayB() {
+        console.log(this.b);
+    };
+    Tea.sayHi = function sayHi() {
+        console.log('hi');
+    };
+    return Tea;
+}();
+*/
+
+
+    class Father {
+        constructor() {
+            this.children = ['A', 'B', 'C']
+        }
+        *[Symbol.iterator]() {
+            yield* this.children.entries()
+        }
+    }
+    let fa = new Father();
+    for (const iterator of fa) {
+        console.log(iterator)
+    }
+
+
+    class Mother {
+        constructor() {
+            this.children = ['A', 'B', 'C']
+        }
+        [Symbol.iterator]() {
+            return this.children.entries()
+        }
+    }
+    let mo = new Mother();
+    for (const iterator of mo) {
+        console.log(iterator)
+    }
+</script>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      function List() {
+        this.listSize = 0; //列表元素个数
+        this.pos = 0; //列表当前位置
+        this.dataSource = []; //返回列表中元素的个数
+        this.clear = clear; //清空列表中所有元素
+        this.find = find;
+        this.toString = toString;
+        this.insert = insert;
+        this.append = append;
+        this.remove = remove;
+        this.front = front;
+        this.end = end;
+        this.prev = prev;
+        this.next = next;
+        this.length = length;
+        this.currPos = currPos;
+        this.moveTo = moveTo;
+        this.getElement = getElement;
+        this.length = length;
+        this.contains = contains;
+      }
+      /*
+            给列表添加元素
+        */
+      function append(element) {
+        this.dataSource[this.listSize++] = element;
+      }
+      /*
+
+        */
+      function find(element) {
+        for (let index = 0; index < this.dataSource.length; index++) {
+          const curr = this.dataSource[index];
+          if (curr == element) return index;
+        }
+        return -1;
+      }
+
+      function remove(element) {
+        var currIndex = this.find(element);
+        if (currIndex > -1) {
+          this.dataSource.splice(currIndex, 1);
+          --this.listSize;
+          return true;
+        }
+        return false;
+      }
+      function length() {
+        return this.listSize;
+      }
+      function toString() {
+        return this.dataSource;
+      }
+
+      function insert(element,after) {
+          let insertPos=this.find(after)
+          if(insertPos>-1){
+              this.dataSource.splice(insertPos+1,0,element)
+              ++this.listSize
+              return true
+          }
+          return false
+      }
+
+      function front() {}
+      function end() {}
+      function prev() {}
+      function next() {}
+      function currPos() {}
+      function moveTo() {}
+      function getElement() {}
+      function contains() {}
+      function  clear() {
+          delete this.dataSource;
+          this.dataSource=[]
+          this.listSize=this.pos=0
+      }
+      let names = new List();
+      names.append("aa");
+      names.append("bb");
+      names.append("cc");
+    </script>
+  </body>
+</html>

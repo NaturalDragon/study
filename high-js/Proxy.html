@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    var target = {
+        id: 'target',
+        name: 'lizn'
+    }
+    let handler = {
+        // get(){
+        //     return 'handler ovrride'
+        // }
+        get: Reflect.get
+    }
+    let proxy0 = new Proxy(target, {
+        get(trapTarget, property, reciver) {
+            console.log(trapTarget === target)
+            console.log(property)
+            console.log(reciver === proxy)
+            // return trapTarget[property]
+            return Reflect.get(trapTarget, property, reciver) + '!'
+        }
+    })
+
+    //捕获器不变式
+    // 如果目标对象有一个不可配置且不可写的数据属性，那么在捕获器返回一个与该属性不同的
+    // 值时，会抛出 TypeError
+    let obj = {
+
+    }
+    Object.defineProperty(obj, 'name', {
+        configurable: false,
+        writable: false,
+        value: 'lizn'
+    })
+    let px1 = new Proxy(obj, {
+        get() {
+            return 'cy'
+        }
+    })
+    // px1.name  报错、、
+
+    let obj2 = {
+        name: 'cy'
+    }
+    let handler2 = {}
+    let { proxy, revoke } = Proxy.revocable(obj2, handler2)
+
+    const o = {};
+    if (Reflect.defineProperty(o, 'foo', { value: 'bar' })) {
+        console.log('success');
+    } else {
+        console.log('failure');
+    }
+
+    //代理中的this
+    const targetOjb={
+        thisValueEqualsProxy(){
+            return this===proxyOjb
+        }
+    }
+    let proxyOjb=new Proxy(targetOjb,{});
+
+
+    //
+    const wm=new WeakMap();
+    class User{
+        constructor(userId){
+            wm.set(this,userId)
+        }
+        get id(){
+            return wm.get(this)
+        }
+        set id(userId){
+            return wm.set(this,userId)
+        }
+    }
+    let user=new User(123);
+    let userProxy=new Proxy(user,{})
+    // user.id!==userProxy.id
+
+    let UserClassProxy=new Proxy(User,{});
+    let instanceUserProxy=new UserClassProxy(30);
+
+    //代理内置对象
+    let arr=new Array(1,2,3);
+    let arrProxy=new Proxy(arr,{});
+    arrProxy.push(4)//成功
+    //特殊内置对象
+    let date=new Date();
+    let dateProxy=new Proxy(date,{});
+    // dateProxy.getDate()//Uncaught TypeError: this is not a Date object.
+
+</script>

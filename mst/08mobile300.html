@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- <meta name="viewport" content="user-scalable=no">
+<meta name="viewport" content="initial-scale=1,maximum-scale=1"> -->
+</head>
+<style>
+    .btn{
+        touch-action: none;
+    }
+</style>
+<body>
+        <div id='btn'>点我</div>
+</body>
+</html>
+<script src="/vconsole.min.js"></script>
+<!-- <script src="/fastclick.js"></script> -->
+<script>
+      // 初始化
+  var vConsole = new VConsole();
+  console.log('Hello world');
+//   if ('addEventListener' in document) {
+// 	document.addEventListener('DOMContentLoaded', function() {
+// 		FastClick.attach(document.body);
+// 	}, false);
+}
+</script>
+<script>
+    let btn=document.getElementById('btn')
+
+    btn.addEventListener('touchstart',function(){
+        console.log(+new Date())
+    })
+    // btn.addEventListener('touchend',function(){
+    //     console.log(+new Date())
+    // })
+    // btn.addEventListener('mouseover',function(){
+    //     console.log(+new Date())
+    // })
+    // btn.addEventListener('mousedown',function(){
+    //     console.log(+new Date())
+    // })
+    // btn.addEventListener('mouseup',function(){
+    //     console.log(+new Date())
+    // })
+    btn.addEventListener('click',function(){
+        console.log(+new Date())
+    })
+
+</script>

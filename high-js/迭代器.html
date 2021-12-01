@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    class Foo {
+        [Symbol.iterator]() {
+            return {
+                next() {
+                    return { done: true, value: 'foo' }
+                }
+            }
+        }
+    }
+    let foo = new Foo();
+    let fooIterator = foo[Symbol.iterator]()
+    console.log(fooIterator.next())
+    class Counter {
+        [Symbol.iterator]() {
+            return this;
+        }
+        constructor(limit) {
+            this.count = 1;
+            this.limit = limit;
+        }
+        next() {
+            if (this.count <= this.limit) {
+                return { done: false, value: this.count++ }
+            } else {
+                return { done: true, value: undefined }
+            }
+        }
+    }
+
+    let counter = new Counter(3)
+    //  console.log(counter)
+    for (const iterator of counter) {
+        //    console.log(iterator)
+    }
+    // console.log(counter)
+    //第二次不能迭代了，
+    for (const iterator of counter) {
+        //   console.log(iterator)
+    }
+
+    class CounterX {
+        constructor(limit) {
+            this.limit = limit
+        }
+        [Symbol.iterator]() {
+            let count = 1, limit = this.limit;
+            return {
+                next() {
+                    if (count <= limit) {
+                        return { done: false, value: count++ }
+                    } else {
+                        return { done: true, value: undefined }
+                    }
+                }
+            }
+        }
+    }
+
+    let counterX = new CounterX(3);
+    console.log(counterX)
+    for (const iterator of counterX) {
+        console.log(iterator)
+    }
+    console.log(counter)
+    //第二次还能迭代了，
+    for (const iterator of counterX) {
+        if (iterator == 2)
+            console.log(iterator)
+    }
+</script>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function Stack() {
+        this.dataSource=[]
+        this.top=0;
+        this.push=push;
+        this.pop=pop;
+        this.peek=peek;
+        this.isEmpty=isEmpty;
+        this.length=length
+    }
+
+    function push(element) {
+        this.dataSource[this.top++]=element
+    }
+    function pop() {
+       return this.dataSource[--this.top]
+    }
+    function peek() {
+        return this.dataSource[this.top-1]
+    }
+    function clear() {
+        this.top=0
+    }
+    function length() {
+        return this.top;
+    }
+    function isEmpty() {
+        return this.top==0
+
+    }
+    let stack=new Stack();
+    stack.push('a')
+    stack.push('b')
+    stack.push('c')
+    stack.push('d')
+    /*
+        回文实现
+    */
+    function isPalindrome(words) {
+        let s=new Stack();
+        for (let index = 0; index < words.length; index++) {
+           s.push(words[index])
+        }
+        let rword='';
+        while(s.length()>0){
+            rword+=s.pop()
+        }
+        if(rword===words){
+            return true
+        }
+        return false
+    }
+    function factorial(n) {
+        if(n===0)return 1
+        return n*factorial(n-1)
+    }
+
+    function factorialStack(n) {
+        var s=new Stack();
+        while (n>1) {
+            s.push(n--)
+        }
+        let pr=1
+        while (s.length()>0) {
+            pr*=s.pop()
+        }
+        return pr;
+    }
+    
+    /*
+    1. 栈可以用来判断一个算术表达式中的括号是否匹配。编写一个函数，该函数接受一个算
+术表达式作为参数，返回括号缺失的位置。下面是一个括号不匹配的算术表达式的例
+子：2.3 + 23 / 12 + (3.14159×0.24
+    */
+    function findWrongBrace(express) {
+        let s=new Stack();
+        for (let index = 0; index < express.length; index++) {
+           if(express[index]==='(')
+                s.push(index)
+            else if(express[index]===')')
+                s.pop()
+            
+        }
+        return s.peek()+1
+    }
+    console.log(findWrongBrace(`2.3 + 23 / 12 + (3.14159 * 0.24`));
+
+    /*
+    现实生活中栈的一个例子是佩兹糖果盒。想象一下你有一盒佩兹糖果，里面塞满了红
+色、黄色和白色的糖果，但是你不喜欢黄色的糖果。使用栈（有可能用到多个栈）写一
+段程序，在不改变盒内其他糖果叠放顺序的基础上，将黄色糖果移出。
+    */
+
+    var  sweetBox = new Stack();
+sweetBox.push('red');
+sweetBox.push('yellow');
+sweetBox.push('red');
+sweetBox.push('yellow');
+sweetBox.push('white');
+sweetBox.push('yellow');
+sweetBox.push('white');
+sweetBox.push('yellow');
+sweetBox.push('white');
+sweetBox.push('red');
+ 
+function getColor(element, stack)
+{
+    var getColorStack = new Stack();
+    var setColorStack =new Stack();
+    while(stack.length()>0)
+    {
+        if(stack.peek() == element)
+        {
+            getColorStack.push(element);
+            stack.pop();
+        }
+        else{
+            setColorStack.push(stack.peek());
+            stack.pop();
+        }
+    }
+    while(setColorStack.length()>0)
+    {
+        stack.push(setColorStack.peek());
+        setColorStack.pop();
+    }
+    console.info(stack.peek());
+}
+getColor('yellow',sweetBox);
+</script>

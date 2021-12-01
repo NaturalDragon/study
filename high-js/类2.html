@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    class Vehicle {
+        constructor() {
+            this.name = 'lizn'
+        }
+        identity(id) {
+            console.log(id, this)
+        }
+        static identityStatic(id) {
+            console.log(id, this)
+        }
+    }
+    class Bus extends Vehicle {
+        constructor() {
+            super()
+            this.age = 18
+            super.identity('sb')
+        }
+        static idShow() {
+            super.identityStatic('idshow')
+        }
+    }
+
+    //    let Bus1 = class extends Vehicle { }
+
+    class Bus2 extends Vehicle {
+
+    }
+    let v1 = new Vehicle()
+    let bus = new Bus()
+    v1.identity('id1')
+    Vehicle.identityStatic('id2')
+
+
+    class AbstractPerson {
+        constructor() {
+            console.log(new.target)
+            if (new.target === AbstractPerson) {
+                throw new Error('abstract class can not be instanced')
+            }
+        }
+    }
+    class Person extends AbstractPerson {
+
+    }
+    let p1 = new Person();
+    // let p2 = new AbstractPerson()//抽象类不能实例化
+</script>

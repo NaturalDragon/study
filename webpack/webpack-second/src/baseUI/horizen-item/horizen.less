@@ -1,0 +1,27 @@
+.horizen_list{
+display:flex;
+align-items:center;
+height:30px;
+justify-content:center;
+overflow:hidden;
+>span:first-of-type{
+    display:block;
+    flex: 0 0 auto;
+    padding: 5px 0;
+    color: grey;
+    font-size:@font-size-m;
+    vertical-align: middle;
+
+}
+}
+.horizen_listItem{
+  flex: 0 0 auto;
+  font-size: @font-size-m;
+  padding: 5px 5px;
+  border-radius: 10px;
+  &.selected{
+    color: @theme-color;
+    border: 1px solid @theme-color;
+    opacity: 0.8;
+  }
+}

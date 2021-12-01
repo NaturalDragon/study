@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    function* generatorFnA() {
+        console.log('11')
+        yield 'aa'
+        console.log('22')
+        return 'bb'
+    }
+    let generatorFnB = function* () { };
+    let foo = {
+        *gg() { }
+    }
+    class Foo {
+        *cc() {
+        }
+    }
+    class FooX {
+        static *xx() {
+        }
+    }
+    let gm = generatorFnA();
+    //suspended
+
+
+
+    //-------------------------------------------------------------
+    function* generatorFnC() {
+        for (const i of [4, 5, 6]) {
+            yield i;
+        }
+        for (const j of [7, 8, 9]) {
+            yield j
+        }
+    }
+    let gc = generatorFnC()
+
+    function* generatorFnD() {
+        yield* [4, 5, 6]
+        yield* [7, 8, 9]
+    }
+    let gd = generatorFnD();
+
+
+    function* generatorE() {
+        console.log('iterator value', yield* [4, 5, 6])
+    }
+    let ge = generatorE()
+    for (const value of generatorE()) {
+        console.log(value)
+    }
+
+
+    function* innerGeneratorFn() {
+        yield 'foo';
+        return 'bar'
+    }
+    function* outerGeneratorFn() {
+        console.log('iterator value', yield* innerGeneratorFn())
+    }
+
+    for (const v of outerGeneratorFn()) {
+        console.log(v)
+    }
+
+    function* nCount(n) {
+        if (n > 0) {
+            yield* nCount(n - 1)
+            yield n - 1
+        }
+    }
+    for (const iterator of nCount(4)) {
+        console.log(iterator)
+    }
+
+    function cacl(n) {
+        if (n <= 0) return 0
+        return n + cacl(n - 1)
+    }
+
+    //生成器作为默认迭代器
+    class Counter {
+        constructor() {
+            this.values = ['l', 'c', 'y']
+        }
+        *[Symbol.iterator]() {
+            yield* this.values;
+        }
+    }
+    let counter = new Counter();
+    for (const i of counter) {
+        console.log(i)
+    }
+
+    console.log('------------------------------------------------------------------------')
+
+    //for-of 循环等内置语言结构会忽略状态为done:true 的IteratorObject内部返回值。
+
+
+
+    function* generatorFnF() {
+        for (const i of [1, 2, 3]) {
+            try {
+                yield i;
+            } catch(e) { }
+        }
+    }
+
+    let gf = generatorFnF();
+
+    for (const v of gf) {
+        if (v > 1) {
+            gf.return(5)
+        }
+        console.log(v)
+    }
+
+    let gfx = generatorFnF();
+    // console.log(gfx);
+    // try {
+    //     gfx.throw('error genF')
+    // } catch (e) {
+    //     console.log(e)
+    // }
+    // console.log(gfx)
+
+</script>

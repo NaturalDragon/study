@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+  <title>li</title>
+  <style type="text/css">
+    html,
+    body {
+      height: 100%;
+      overflow: auto !important;
+    }
+
+    body {
+      background: #fff !important;
+    }
+
+    /**
+     vw && rem适配 1rem为设计稿上的100px
+     由于iphone6为2倍屏,即对应750px设计稿上的100px*100px
+    **/
+    html {
+      font-size: 13.3333333333333vw !important;
+    }
+
+    /* 适配大屏幕 */
+    @media (min-width: 560px) {
+      html {
+        font-size: 54px !important;
+      }
+    }
+  </style>
+  <!-- <script src="./config//vconsole.min.js"></script>
+  <script>
+    const vConsole = new VConsole();
+  </script> -->
+</head>
+<style>
+  @keyframes loading {
+
+    0%,
+    100% {
+      transform: scale(0.0);
+    }
+
+    50% {
+      transform: scale(1.0);
+    }
+  }
+
+  .node {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 60px;
+    height: 60px;
+    opacity: 0.6;
+    border-radius: 50%;
+    background-color: rgb(51, 163, 244);
+    animation: loading 1.4s infinite ease-in;
+  }
+
+  .node2 {
+
+    animation-delay: -0.7s;
+  }
+</style>
+
+<body>
+
+  <div id="root">
+    <div class='loadingWrapper'>
+      <div class="node"></div>
+      <div class="node node2"></div>
+    </div>
+
+  </div>
+ 
+  <script src="./config/appSetting.js"></script>
+<!-- unpkg : use the latest version of Video.js -->
+<!-- <link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet"> -->
+<!-- <script src="https://unpkg.com/video.js/dist/video.min.js"></script> -->
+
+<!-- unpkg : use a specific version of Video.js (change the version numbers as necessary) -->
+<!-- <link href="https://unpkg.com/video.js@7.10.2/dist/video-js.min.css" rel="stylesheet"> -->
+<!-- <script src="https://unpkg.com/video.js@7.10.2/dist/video.min.js"></script> -->
+
+<!-- cdnjs : use a specific version of Video.js (change the version numbers as necessary) -->
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.10.2/video-js.min.css" rel="stylesheet"> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.10.2/video.min.js"></script> -->
+
+</body>
+
+</html>

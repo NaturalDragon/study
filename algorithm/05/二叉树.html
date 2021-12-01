@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  //https://www.jianshu.com/p/5e9ea25a1aae
+  function Node(data, left, right) {
+    this.data = data;
+    this.left = left;
+    this.right = right;
+    this.show = show;
+  }
+  function show() {
+    return this.data;
+  }
+  /*
+    二叉查找树
+  */
+  function BinarySearchTree() {
+    this.root = null;
+    this.insert = insert;
+    this.inOrder = inOrder;
+    this.preOrder = preOrder;
+    this.postOrder = postOrder;
+    this.getMin = getMin;
+    this.getMax = getMax;
+    this.find = find;
+    this.remove = remove;
+  }
+  function insert(data) {
+    let node = new Node(data, null, null);
+    if (this.root == null) {
+      this.root = node;
+    } else {
+      let current = this.root;
+      let parent;
+      while (true) {
+        parent = current;
+        if (data < current.data) {
+          current = current.left;
+          if (current == null) {
+            parent.left = node;
+            break;
+          }
+        } else {
+          current = current.right;
+          if (current == null) {
+            parent.right = node;
+            break;
+          }
+        }
+      }
+    }
+  }
+  /*
+  中序遍历
+  */
+  function inOrder(node) {
+    if (node != null) {
+      inOrder(node.left);
+      console.log(node.show());
+      inOrder(node.right);
+    }
+  }
+  /*前序遍历*/
+  function preOrder(node) {
+    if (node != null) {
+      console.log(node.show());
+      preOrder(node.left);
+      preOrder(node.right);
+    }
+  }
+  /*后序遍历*/
+  function postOrder(node) {
+    if (node != null) {
+        postOrder(node.left);
+        postOrder(node.right);
+        console.log(node.show());
+      }
+  }
+  function getMin() {
+    let currentNode = this.root;
+    while (currentNode.left != null) {
+      currentNode = currentNode.left;
+    }
+    return currentNode.data;
+  }
+  function getMax() {
+    let currentNode = this.root;
+    while (currentNode.right != null) {
+      currentNode = currentNode.right;
+    }
+    return currentNode.data;
+  }
+
+  function find(data) {
+    let current = this.root;
+    while (current != null) {
+      if (current.data != data) {
+        if (current.data > data) {
+          current = current.left;
+        } else {
+          current = current.right;
+        }
+      } else {
+        return current;
+      }
+    }
+  }
+
+  function remove(data) {
+    let root = removeNode(this.root, data);
+  }
+  function getSmallest(node) {
+    while (node.left != null) {
+      node = node.left;
+    }
+    return node;
+  }
+  function removeNode(node, data) {
+    if (node == null) return null;
+    if (node.data == data) {
+      if (node.left == null && node.right == null) {
+        return null;
+      }
+      if (node.left == null) return node.right;
+      if (node.right == null) return node.left;
+      let tempNode = getSmallest(node.right);
+      node.data = tempNode.data;
+      node.right = removeNode(node.right, tempNode.data);
+      return node;
+    } else if (data < node.data) {
+      node.left = removeNode(node.left, data);
+      return node;
+    } else {
+      node.right = removeNode(node.right, data);
+      return node;
+    }
+  }
+  /*
+广度优先遍历  
+  */
+  var levelOrder = function (root) {
+    if (root == null) return [];
+    let result = [];
+    let queue = [root];
+    while (queue.length) {
+      let length = queue.length;
+      let currentLevel = [];
+      for (let i = 0; i < length; i++) {
+        let current = queue.shift();
+        current.left ? queue.push(current.left) : "";
+        current.right ? queue.push(current.right) : "";
+        currentLevel.push(current.data);
+      }
+      result.push(currentLevel);
+    }
+    return result;
+  };
+
+  let result = [];
+  function dfs(node) {
+    if (node) {
+    }
+  }
+  let bst = new BinarySearchTree();
+  bst.insert(23);
+  bst.insert(45);
+  bst.insert(16);
+  bst.insert(37);
+  bst.insert(3);
+  bst.insert(99);
+  bst.insert(22);
+  // bst.insert(16);
+  bst.inOrder(bst.root);
+  console.log("----------------------------------------------");
+  bst.preOrder(bst.root);
+  console.log("----------------------------------------------");
+  bst.postOrder(bst.root);
+  console.log("----------------------------------------------");
+  console.log("最小值:" + bst.getMin());
+  console.log("----------------------------------------------");
+  console.log("最大值:" + bst.getMax());
+  console.log("find" + bst.find(3)?.data);
+
+  let level = levelOrder(bst.root);
+</script>

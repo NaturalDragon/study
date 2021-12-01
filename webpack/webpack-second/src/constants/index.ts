@@ -1,0 +1,48 @@
+export const CHANGE_BANNER = 'home/recommend/CHANGE_BANNER';
+
+export const CHANGE_BANNER_SUCCESS = 'home/recommend/CHANGE_BANNER_SUCCESS';
+
+export const CHANGE_RECOMMEND_LIST = 'home/recommend/RECOMMEND_LIST';
+
+export const CHANGE_RECOMMEND_LIST_SUCESS= 'home/recommend/RECOMMEND_LIST_SUCCESS';
+
+export const CHANGE_ENTER_LOADING = 'home/CHANGE_ENTER_LOADING';
+
+
+export const CHANGE_ARTIST = 'singer/CHANGE_ARTIST';
+export const CHANGE_SONGS_OF_ARTIST = 'singer/CHANGE_SONGS_OF_ARTIST';
+export const CHANGE_SONGS_OF_ARTIST_PULLUP = 'singer/CHANGE_SONGS_OF_ARTIST_PULLUP';
+export const CHANGE_SONGS_OF_ARTIST_PULLDOWN = 'singer/CHANGE_SONGS_OF_ARTIST_PULLDOWN';
+export const CHANGE_SONGS_OF_ARTIST_SUCCESS = 'singer/CHANGE_SONGS_OF_ARTIST_SUCESS';
+
+export const CHANGE_SINGER_ENTER_LOADING = 'home/singers/CHANGE_ENTER_LOADING';
+export const CHANGE_CATOGORY = 'home/singers/CHANGE_CATEGORY';
+export const CHANGE_TYPE = 'home/singers/CHANGE_TYPE';
+export const CHANGE_ALPHA = 'home/singers/CHANGE_ALPHA';
+export const CHANGE_SINGER_LIST = 'home/singers/CHANGE_SINGER_LIST';
+export const CHANGE_LIST_OFFSET = 'home/singers/CHANGE_LIST_OFFSET';
+export const CHANGE_PULLUP_LOADING = 'home/singers/PULLUP_LOADING';
+export const CHANGE_PULLDOWN_LOADING = 'home/singers/PULLDOWN_LOADING';
+
+
+
+export const CHANGE_CURRENT_ALBUM = 'album/CHANGE_CURRENT_ALBUM';
+export const CHANGE_CURRENT_ALBUM_SUCCESS = 'album/CHANGE_CURRENT_ALBUM_SUCCESS';
+export const CHANGE_ALBUM_ENTER_LOADING = 'album/CHANGE_ENTER_LOADING';
+
+
+
+export const CHANGE_SONGS_INFO_ARTIST = 'singer/CHANGE_SONGS_INFO_ARTIST';
+export const CHANGE_SONGS_INFO_ARTIST_SUCCESS = 'singer/CHANGE_SONGS_INFO_ARTIST_SUCCESS';
+export const CHANGE_SINGERINFO_ENTER_LOADING = 'singer/CHANGE_SINGERINFO_ENTER_LOADING';
+
+
+
+export const SET_CURRENT_SONG = 'player/SET_CURRENT_SONG';
+export const SET_FULL_SCREEN = 'player/SET_FULL_SCREEN';
+export const SET_PLAYING_STATE = 'player/SET_PLAYING_STATE';
+export const SET_SEQUECE_PLAYLIST = 'player/SET_SEQUECE_PLAYLIST';
+export const SET_PLAYLIST = 'player/SET_PLAYLIST';
+export const SET_PLAY_MODE = 'player/SET_PLAY_MODE';
+export const SET_CURRENT_INDEX = 'player/SET_CURRENT_INDEX';
+export const SET_SHOW_PLAYLIST = 'player/SET_SHOW_PLAYLIST';

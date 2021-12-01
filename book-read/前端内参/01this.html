@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+    /*
+     // 'use strict'
+    function func(){
+       // 'use strict'
+         this.b=129
+         console.log(this.b)
+        console.log(this.a);
+     
+    }
+    var a = "1891";
+(function(){
+  
+   // func()
+})()
+
+var num=0;
+class Obj{  
+    constructor(num){
+        this.num=num
+    }
+    func(){
+        console.log(this.num);
+    }
+    func1(){
+        // setTimeout(function(){
+        //     console.log('settimeout'+this.num)
+        // },1000)
+        setTimeout(() => {
+            console.log('settimeout'+this.num)
+        }, 1000);
+    }
+    func2(){
+        // setInterval(function(){
+        //     console.log('setInterval'+this.num)
+        // },1000)
+
+        setInterval(function(){
+            console.log('setInterval'+this.num)
+        }.bind(this),1000)
+    }
+}
+let obj=new Obj(1)
+obj.func();
+obj.func1();
+obj.func2();
+
+
+
+
+
+function func() {
+  console.log(this.a);
+}
+
+var obj2={
+    a:1897,
+    func:func
+}
+var obj1={
+    a:'coffe',
+    obj2:obj2
+}
+
+obj1.obj2.func()
+
+var bar=obj2.func;
+var a='丢了'
+bar()
+*/
+
+/*
+function func() {
+  console.log(this.a);
+}
+var a='321123'
+//func.call(null)
+
+var o={a:3,func:func}
+var p={a:4}
+
+o.func()
+(p.func = o.func)();
+*/
+
+function func(){
+    return a=>{
+        console.log(this.a)
+    }
+}
+
+var obj1 = {
+  a: 2
+};
+var obj2 = {
+  a: 3
+};
+
+var bar=func.call(obj1);
+bar.call(obj2)
+</script>

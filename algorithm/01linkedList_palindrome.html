@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回文链表</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+      function ListNode(val, next) {
+      this.val = (val===undefined ? 0 : val)
+      this.next = (next===undefined ? null : next)
+      }
+
+      var first=new ListNode(1)
+      var second=new ListNode(2)
+      first.next=second;
+      var third=new ListNode(2)
+      second.next=third
+      var four=new ListNode(1)
+      third.next=four
+
+      function isPalindrome(head){
+          var arr=[]
+          var start=head;
+          while(start!=null){
+              arr.push(start.val);
+              start=start.next
+          }
+          if(arr.length===1)return true;
+          //双指针
+          for (var i=0,j=arr.length-1;i<j;i++,j--) {
+                if(arr[i]!==arr[j])return false
+              
+          }
+          return true
+      }
+
+</script>

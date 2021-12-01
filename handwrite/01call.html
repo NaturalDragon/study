@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+
+ //原理，把函数“附加”到对象上
+  // var foo = {
+  //     value: 1,
+  //     bar: function() {
+  //         console.log(this.value)
+  //     }
+  // };
+  //foo.bar(); // 1
+  var value = 10;
+  function bar(name, age) {
+    console.log(name)
+    console.log(age)
+    console.log(this.value)
+    return { a: 1, b: 20 }
+  }
+  var foo = {
+    value: 1,
+
+  }
+  Function.prototype.call2 = function (context) {
+    context = context || window;
+    context.fn = this;
+    var args = []
+    for (var i = 1; i < arguments.length; i++) {
+      args.push(`arguments[${i}]`)
+
+    }
+    var result = eval(`context.fn(${args})`)
+    delete context.fn;
+    return result;
+
+  }
+
+  var res = bar.call2(foo, 'lizn', '28')
+
+  Function.prototype.apply2 = function (context, arr) {
+    context = context || window;
+    context.fn = this;
+    var result;
+    if (!arr) {
+      result = context.fn();
+    } else {
+      var args = [];
+      for (var i = 0; i < arr.length; i++) {
+        args.push(`arr[${i}]`)
+      }
+      result = eval(`context.fn(${args})`)
+    }
+    delete context.fn;
+    return result;
+
+  }
+
+  var res2 = bar.apply2(foo,['cy', '18'])
+
+</script>

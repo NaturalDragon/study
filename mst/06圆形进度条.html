@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .cicleProgressWrap {
+        width: 200px;
+        height: 200px;
+        margin: 50px auto;
+        position: relative;
+        border: 1px solid #ddd;
+
+    }
+
+    .wrapper {
+        position: absolute;
+        width: 100px;
+        height: 200px;
+        top: 0;
+        overflow: hidden;
+    }
+
+    .left {
+        left: 0;
+        /* background-color: red; */
+    }
+
+    .right {
+        right: 0;
+        /* background-color: blue; */
+    }
+
+    .cicleProgress {
+        width: 160px;
+        height: 160px;
+        border: 20px solid transparent;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        transform: rotate(-135deg);
+    }
+
+    @keyframes cicleProgressLoadRight {
+        0% {
+            transform: rotate(-135deg);
+
+        }
+
+        50%,
+        100% {
+            transform: rotate(45deg);
+        }
+    }
+
+    @keyframes cicleProgressLoadLeft {
+
+        0%,
+        50% {
+            transform: rotate(-135deg);
+        }
+
+        100% {
+            transform: rotate(45deg);
+        }
+    }
+
+    .rightCicle {
+        border-top: 20px solid green;
+        border-right: 20px solid green;
+        right: 0;
+        animation: cicleProgressLoadRight 5s linear infinite;
+    }
+
+    .leftCicle {
+        border-left: 20px solid green;
+        border-bottom: 20px solid green;
+        left: 0;
+        animation: cicleProgressLoadLeft 5s linear infinite;
+    }
+</style>
+
+<body>
+
+    <div class="cicleProgressWrap">
+
+        <div class="wrapper left">
+            <div class="cicleProgress leftCicle"></div>
+        </div>
+        <div class="wrapper right">
+            <div class="cicleProgress rightCicle"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>

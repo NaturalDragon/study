@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            margin: 0;padding: 0;
+        }
+        .wrapper1 {
+            margin: 30px;
+            width: 200px;
+            height: 100px;
+            background-color: yellow;
+            transform: rotate(30deg);
+            -ms-transform: rotate(30deg);/*IE 9*/
+            -webkit-transform: rotate(30deg);/* safari and chrome*/
+            -o-transform: rotate(30deg);/*opera*/
+            -moz-transform: rotate(30deg);/*firefox*/
+        }
+        .wrapper2{
+            margin: 30px;
+            width: 200px;
+            height: 100px;
+            background-color: yellow;
+            transform: translate(50px,100px);
+        }
+        .wrapper3{
+            margin: 30px;
+            width: 200px;
+            height: 100px;
+            background-color: yellow;
+            transform:scale(0.1,0.1)
+        }
+        .wrapper4{
+            margin: 30px;
+            width: 200px;
+            height: 100px;
+            background-color: yellow;
+            transform:skew(30deg,20deg)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper1"></div>
+    <!-- <div class="wrapper2"></div> -->
+    <div class="wrapper3"></div>
+    <div class="wrapper4"></div>
+</body>
+
+</html>

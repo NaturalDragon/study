@@ -1,0 +1,29 @@
+{
+  "presets": [
+    "@babel/preset-react",
+    [
+      //处理es6新语法兼容
+      "@babel/preset-env", {
+
+        "useBuiltIns": "usage",
+        "corejs": 3 //core-js处理ES6新API兼容
+      }
+    ]
+  ],
+  "plugins": ["@babel/plugin-proposal-class-properties", //处理类属性定义
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "corejs": 3
+      }
+    ],
+    ["@babel/plugin-proposal-decorators", {
+      "legacy": true
+    }],
+    ["import", {
+      "libraryName": "antd-mobile",
+      "libraryDirectory": "es",
+      "style": "css"
+    }]
+  ]
+}

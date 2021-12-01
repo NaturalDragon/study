@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+/*
+    try{        
+        //throw new Error("1")
+        setTimeout(() => {
+                throw new Error("settimeout")
+        }, 100);
+    }
+    catch(ex){
+        console.info(ex)
+    }
+    */
+    async function foo() {
+  await bar();
+  return 42;
+}
+
+async function bar() {
+  await Promise.resolve();
+  throw new Error('BEEP BEEP');
+}
+
+//foo().catch(error => console.log(error.stack));
+
+async function test() {
+  console.log(100)
+  let x = await 200
+  console.log(x)
+  console.log(200)
+}
+console.log(0)
+ test()
+console.log(300)
+</script>

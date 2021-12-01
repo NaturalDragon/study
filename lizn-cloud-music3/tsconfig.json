@@ -1,0 +1,74 @@
+// {
+//   "compilerOptions": {
+//     "target": "es5",
+//     "lib": [
+//       "dom",
+//       "dom.iterable",
+//       "esnext"
+//     ],
+//     "allowJs": true,
+//     "skipLibCheck": true,
+//     "esModuleInterop": true,
+//     "allowSyntheticDefaultImports": true,
+//     "strict": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "noFallthroughCasesInSwitch": true,
+//     "module": "esnext",
+//     "moduleResolution": "node",
+//     "resolveJsonModule": true,
+//     "suppressImplicitAnyIndexErrors": true,
+//     "isolatedModules": true,
+//     "noEmit": true,
+//     "strictNullChecks": true,
+//     "jsx": "react"
+//   },
+//   "include": [
+//     "src"
+//   ]
+// }
+// {
+//     "compilerOptions": {
+//         "module": "commonjs",
+//         "target": "es2015",
+//         "sourceMap": true,
+//         "jsx": "react",
+//         "baseUrl": ".",
+//         "paths": {
+//             "@/*": ["src/*"]
+//         }
+//     },
+//     "include": ["./src/**/*", "src/routes/route/.tsx"],
+//     "exclude": ["node_modules"]
+// }
+
+{
+    "compilerOptions": {
+        "module": "commonjs", // 指定使用模块: 'commonjs', 'amd', 'system', 'umd' or 'es2015'
+        "target": "es2015", // 指定 ECMAScript 目标版本: 'ES3' (default), 'ES5', 'ES6'/'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'
+        "sourceMap": true, //生成相应的 '.map' 文件
+        "lib": ["dom", "dom.iterable", "esnext"], // 指定要包含在编译中的库文件
+        "allowJs": true, // 允许编译 javascript 文件
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": false,
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "suppressImplicitAnyIndexErrors": true,
+
+        "isolatedModules": true,
+        // "noEmit": true,
+        // "checkJs": true, // 报告 javascript 文件中的错误
+        "strictNullChecks": false,
+        "jsx": "react", //指定 jsx 代码的生成: 'preserve', 'react-native', or 'react'
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["src/*"]
+        }
+    },
+    "include": ["./src/**/*", "src/routes/route/.tsx"],
+    "exclude": ["node_modules"]
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>box</title>
+</head>
+<style>
+    /*
+    盒模型 box-sizing:border-box,
+    */
+    .btn {
+        position: relative;
+        top: 7px;
+        left: 7px;
+        box-sizing: border-box;
+        width: 16px;
+        height: 16px;
+        border-width: 3px;
+        border-style: solid;
+        border-color: rgb(228, 228, 228);
+        border-image: initial;
+        border-radius: 50%;
+        background: rgb(212, 68, 57);
+    }
+</style>
+
+<body>
+    <div class="btn"></div>
+</body>
+
+</html>
+<script>
+    console.log(document.getElementsByClassName('btn')[0].innerWith)
+</script>

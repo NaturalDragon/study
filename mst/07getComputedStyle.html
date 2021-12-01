@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box{
+            background-color: red;
+    }
+    .box::after{
+        content: 'rocks';
+    }
+</style>
+<body>
+    <div class="box" style="width: 100px;height: 100px;" id='box'>
+
+    </div>
+</body>
+</html>
+<script>
+        let box=document.getElementById('box')
+        let boxComputedStyle=window.getComputedStyle(box,'::after')//document.defaultView.getComputedStyle(box,null);
+        console.log(box.style.backgroundColor)
+        console.log(boxComputedStyle.width)
+
+
+        let length = 10;
+function fn() {
+  console.log(this.length);
+}
+
+let obj = {
+  length: 5,
+  method(fn){
+  	fn()
+    arguments[0]()
+	}
+}
+
+obj.method(fn, 1);
+</script>

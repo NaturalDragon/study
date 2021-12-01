@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // alert('in')
+
+    const getQueryUrlString = function (url, name) {
+        const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`, "i");
+        const param = url.split('?')[1];
+        if (!param) return null
+        const r = param.match(reg);
+        if (r != null) return r[2]; return null;
+    }
+
+    let returnUrl =decodeURIComponent( window.location.href);
+    let url;
+    if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+        url = `http://10.81.106.123/idp/oauth2/authorize?redirect_uri=${returnUrl}&state=123
+    &client_id=laowu&response_type=code`
+    }else{
+        url = `https://10.81.106.123/idp/oauth2/authorize?redirect_uri=${returnUrl}&state=123
+    &client_id=laowu&response_type=code`
+    }
+
+    let code= getQueryUrlString(window.location.href,'code')
+    if(code){
+        console.log(code)
+       // alert(code)
+    }else{
+        window.location.href = url;
+    }
+  
+</script>

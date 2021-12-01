@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BCF</title>
+</head>
+<style>
+    /*
+      1.使BCF内部浮动元素不会到处跑      
+    */
+    .out {
+        border: 10px solid red;
+        min-height: 20px;
+        /* overflow: hidden; */
+    }
+
+    .out::after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+
+    .in {
+        background-color: green;
+        height: 100px;
+        width: 100%;
+        float: left;
+    }
+
+    /*
+    2.和浮动元素产生边界
+*/
+
+    .left {
+        height: 100px;
+        min-width: 200px;
+        margin-right: 20px;
+        float: left;
+        border: 1px solid red;
+
+    }
+
+    .right {
+        height: 100px;
+        border: 1px solid black;
+        display: flow-root;
+    }
+</style>
+
+<body>
+    <div class="out">
+        <div class="in"></div>
+    </div>
+    <!-- 
+    <div class="left"></div>
+    <div class="right"></div> -->
+</body>
+
+</html>

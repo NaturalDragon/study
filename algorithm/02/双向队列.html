@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  function Dequeue() {
+    this.dataSource = [];
+    this.dequeue_front = dequeue_front;
+    this.enqueue_front = enqueue_front;
+    this.dequeue_back = dequeue_back;
+    this.enqueue_back = enqueue_back;
+    this.front = front;
+    this.back = back;
+    this.toString = toString;
+    this.isEmpty = isEmpty;
+    this.count = count;
+  }
+  function enqueue_front(element) {
+    this.dataSource.unshift(element);
+  }
+  function dequeue_front() {
+    return this.dataSource.pop();
+  }
+  function enqueue_back(element) {
+    this.dataSource.push(element);
+  }
+  function dequeue_back() {
+    return this.dataSource.shift();
+  }
+
+  function toString() {
+    var retStr = "";
+    for (var i = 0; i < this.dataStore.length; ++i) {
+      retStr += this.dataStore[i] + "\n";
+    }
+    return retStr;
+  }
+  function front() {
+    return this.dataStore[0];
+  }
+  function back() {
+    return this.dataStore[this.dataStore.length - 1];
+  }
+  function isEmpty() {
+    if (this.dataStore.length == 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  function count() {
+    return this.dataStore.length;
+  }
+
+  function isPalindrome(words) {
+    let l = new Dequeue();
+    let r = new Dequeue();
+    for (let index = 0; index < words.length; index++) {
+      l.enqueue_back(words[index]);
+      r.enqueue_front(words[index]);
+    }
+    if (l.dataSource.join("") === r.dataSource.join("")) {
+      return true;
+    }
+    return false;
+  }
+</script>

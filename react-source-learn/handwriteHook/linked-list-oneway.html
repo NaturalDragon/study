@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单向链表</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+    function Node(element){
+        this.element=element;
+        this.next=null;
+    }
+    function LinkedList(){
+        this.head=new Node('head');//头节点
+        this.find=find;//查找节点
+        this.insert=insert;//插入节点
+        this.remove=remove;//删除节点
+        this.findPrev=findPrev;//查找前一节点
+        this.display=display;//显示链表
+    }
+    function find(item){
+        let currentNode=this.head;
+        while(!(currentNode==null)&&currentNode.element!==item){
+            currentNode=currentNode.next
+        }
+        return currentNode;
+    }
+    function insert(newElement,item){
+        let newNode=new Node(newElement);
+        let currentNode=this.find(item);
+        if(currentNode==null)throw new Error('current item is not in linkedlist')
+        newNode.next=currentNode.next;
+        currentNode.next=newNode;
+    }
+    function display(){
+        let currentNode=this.head;
+        while(!(currentNode.next===null)){
+            console.log(currentNode.next);
+            currentNode=currentNode.next
+        }
+    }
+    function findPrev(item){
+        let currentNode=this.head;
+        while(!(currentNode.next==null) &&(currentNode.next.element!==item)){
+                currentNode=currentNode.next
+        }
+        return currentNode
+    }
+
+    function remove(item){
+        let prevNode=this.findPrev(item);
+        if(!(prevNode.next==null)){
+            prevNode.next=prevNode.next.next
+        }
+
+    }
+
+    let link=new LinkedList();
+    link.insert('Apple' , 'head');
+    link.insert('Banana' , 'Apple');
+    link.insert('Pear' , 'Banana');
+</script>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    function* gen() {
+        console.log('enter');
+        let a = yield 1;
+        console.log(a)
+        let b = yield (function () { return 2 })()
+        console.log(b)
+        let c = yield 3;
+        console.log(c)
+        return 4;
+    }
+    let g = gen()
+
+    function run0(gen) {
+        let g = gen()
+        let _next = function (val) {
+            let res = g.next(val);
+            if (res.done) return res.value;
+            _next(res.value)
+        }
+        _next()
+    }
+   
+   // run0(gen)
+
+    function* Mygen() {
+        let a = yield Promise.resolve(1)
+        console.log(a)
+        let b = yield Promise.resolve(2)
+        console.log(b)
+        let c = yield Promise.resolve(3)
+        console.log(c)
+    }
+    //let mygen=Mygen()
+
+    /*
+    mygen.next().value.then(val=>{
+       // console.log(val);
+        mygen.next(val).value.then(val=>{
+           // console.log(val)
+            mygen.next(val).value.then(val=>{
+                //console.log(val)
+                mygen.next(val)
+            })
+        })
+    })
+*/
+    function run(gen) {
+        let g = gen()
+        let _next = function (val) {
+            let res = g.next(val);
+            if (res.done) return res.value;
+            res.value.then(v => {
+                _next(v)
+            })
+        }
+        _next()
+    }
+
+ //   run(Mygen)
+
+ async function test(){
+    let arr=[4,2,1]
+    // arr.forEach(async ele=>{
+    //        let res= await handel(ele)
+    //        console.log(res)
+    // })
+    // for (const iterator of arr) {
+    //     let res= await handel(iterator)
+    //        console.log(res)
+    // }
+
+    const interator=arr[Symbol.iterator]();
+    let res=interator.next();
+    while(!res.done){
+        let v=await handel(res.value)
+        console.log(v)
+        res=interator.next()
+    }
+    console.log('结束')
+ }
+ function handel(x){
+    return new  Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                    resolve(x)
+            },x*1000)
+    })
+ }
+
+
+
+  //test()
+
+let arr=[4,2,1]
+let interator=arr[Symbol.iterator]();
+
+
+function* fibonacci(){
+  let [prev, cur] = [0, 1];
+  console.log(cur);
+  while(true) {
+    [prev, cur] = [cur, prev + cur];
+    yield cur;
+  }
+}
+
+
+for (let item of gen()) {
+        console.log(item)
+}
+</script>

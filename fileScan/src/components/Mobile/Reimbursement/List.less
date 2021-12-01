@@ -1,0 +1,121 @@
+
+.page{
+  //  margin-top:60px ;
+}
+.search{
+    padding: 0px 2%;
+    position: fixed;
+    height: 60px;
+    width: 96%;
+    background: #fff;
+    z-index: 10000;
+    top: 0px;
+    left: 0;
+}
+.conime{
+  top: 0;
+    position: fixed;
+
+    width: 100%;
+    height: 50px;
+    z-index: 10000000;
+}
+.search::after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px solid #CCCCCC;
+    color: #CCCCCC;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+
+  .content{
+    padding: 0px 15px;
+
+  }
+  .conItem{
+    padding-top: 10px;
+    position: relative;
+    padding-bottom: 15px;
+  }
+  .conItem::after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px solid #CCCCCC;
+    color: #CCCCCC;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+  .itemFirst{
+      display: flex;
+  }
+  .itemI{
+    width:8px;
+    height:8px;
+    margin-right: 5px;
+    background:rgba(18,47,132,1);
+    border-radius:50%;
+    display: inline-block;
+  }
+  .itemTitle{
+    font-size:15px;
+    font-family:PingFang SC;
+    font-weight:500;
+    color:rgba(51,51,51,1);
+    line-height: 25px;
+  }
+  .itemSec{
+      display: flex;
+      line-height: 30px;
+  }
+
+  .itemTime{
+    height:19px;
+    font-size:13px;
+    font-family:PingFang SC;
+    font-weight:500;
+    color:rgba(153,153,153,1);
+  }
+
+  .tabWrap{
+
+    display: flex;
+    height: 50px;
+    line-height: 50px;
+  }
+  .tabItem{
+      width: 100%/6;
+      text-align: center;;
+  }
+  .none{
+     display: none;
+  }
+  .block{
+    display: block;
+    width: 100%;
+    
+}
+  .reItem{
+    height: 50px;
+    line-height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 10px;
+    color: #000;
+    font-size: 17px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }

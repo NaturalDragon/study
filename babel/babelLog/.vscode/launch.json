@@ -1,0 +1,52 @@
+{
+  "configurations": [
+    {
+      "name": "linter-no-func-assign-lint",
+      "program": "${workspaceFolder}/tests/nofunctionassginlintPluginTest.js",
+      "request": "launch",
+      "type": "node"
+    },
+    {
+      "name": "eq-Lint-Plugin-Test",
+      "program": "${workspaceFolder}/tests/eqLintPluginTest.js",
+      "request": "launch",
+      "type": "node"
+    },
+    {
+      "name": "typeCheckPluginTest",
+      "program": "${workspaceFolder}/tests/typeCheckPluginTest.js",
+      "request": "launch",
+      "type": "node"
+    },
+    {
+      "name": "typeCheckPluginTest2",
+      "program": "${workspaceFolder}/tests/typeCheckPluginTest2.js",
+      "request": "launch",
+      "type": "node"
+    },
+    {
+      "name": "codeManglePlugin",
+      "program": "${workspaceFolder}/tests/codeManglePlugin.js",
+      "request": "launch",
+      "type": "node"
+    },
+    {
+      "name": "codeCompressPlugin",
+      "program": "${workspaceFolder}/tests/codeCompressPlugin.js",
+      "request": "launch",
+      "type": "node"
+    },
+    {
+      "name": "interpreter",
+      "program": "${workspaceFolder}/interpreter/interpreter.js",
+      "request": "launch",
+      "type": "node"
+    },
+    {
+      "name": "min-babel-test",
+      "program": "${workspaceFolder}/min-babel/tests/index.js",
+      "request": "launch",
+      "type": "node"
+    }
+  ]
+}

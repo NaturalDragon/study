@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //内层的作用域访问它外层函数的 变量、函数时，闭包就产生了
+    // for (var i = 0;i< 6; i++) {
+    //     (function(j){
+    //         setTimeout(function(){
+    //         console.log(j)
+    //     }, i*1000);
+    //     })(i)
+    // }
+
+    function func1(){
+        var a=1;
+        function func2(){
+            console.log(a)
+        }
+        func2()
+    }
+//    func1();
+
+
+
+// 执行顺序问题，考察频率挺高
+setTimeout(function() {
+  console.log(1);
+});
+new Promise(function(resolve, reject) {
+  console.log(2);
+  resolve(3);
+}).then(function(val) {
+  console.log(val);
+});
+new Promise(function(resolve,reject){
+    resolve(5)
+})
+.then(e=>console.log(e))
+console.log(4);
+    
+</script>

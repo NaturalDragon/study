@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //'use strict'
+    //1.默认指向
+    function func1() {
+        //  'use strict'
+        console.log(this.a)
+    }
+    function bcc(){ 
+        console.log(this.location)
+    }
+    var a = 123;
+    // new  func1()
+    (function () {
+        // "use strict";
+        // func1(); //>> 1891
+        //这里输出 1891 而不是报错，是因为严格模式下，this的指向与func的调用位置无关
+    })();
+
+    //1.1 class 中，setInterval、setTimeout 中如果是匿名函数回调，this指向windows，
+         //如果是箭头函数回调，this指向实例
+
+    var num = 0;
+    class Obj {
+        constructor(num) {
+            this.num = num;
+        }
+        func() {
+            console.log(this.num)
+        }
+        func2() {
+            setInterval(function () {
+                console.log(this.num)//0 0 0 0...
+            }, 1000);
+            setInterval(()=>{
+                console.log(this.num)//33 33 33 33...
+            },1000)
+        }
+        func3() {
+            setTimeout(function () {
+                console.log(this.num)//0
+            }, 50);
+            setTimeout(() => {
+                console.log(this.num)//33
+            }, 50);
+        }
+    }
+    // var o=new Obj(33);
+    // o.func();
+    // o.func2();
+    // o.func3();
+
+ //1.2 构造函数中，setInterval、setTimeout 中如果是匿名函数回调，this指向windows，
+         //如果是箭头函数回调，this指向实例
+    function Person(num) {
+        this.num = num;
+        this.func = function () {
+            console.log(this.num);
+        };
+        // this.func2 = function () {
+        //     setInterval(function () {
+        //         console.log(this.num)
+        //     }, 1000);
+        // }
+        this.func2 = function () {
+            setInterval( ()=> {
+                console.log(this.num)
+            }, 1000);
+        }
+        this.func3 = function () {
+            setTimeout(function () {
+                console.log(this.num)
+            }, 50);
+        }
+    }
+
+    var p = new Person(33);
+    p.func();
+    p.func2();
+    p.func3();
+
+   
+</script>

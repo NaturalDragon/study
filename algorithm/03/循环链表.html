@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    function Node(element) {
+        this.element = element;
+        this.next = null
+    }
+    function LinkedList() {
+        this.head = new Node('head');
+        this.head.next=this.head
+        this.find = find;
+        this.findPrevious = findPrevious;
+        this.insert = insert;
+        this.remove = remove;
+        this.back=back;//使当前节点向后移动 n 个节点
+        this.currentNode=this.head
+        this.display = display;
+        this.count=count
+    }
+    function back(n) {
+        while (n>0) {
+            if(this.currentNode.next.element==='head'){
+                this.currentNode=this.currentNode.next.next
+            }else{
+                this.currentNode=this.currentNode.next;
+            }
+            n--
+        }
+      
+    }
+    function insert(newElement, item) {
+        let newNode = new Node(newElement);
+        let currentNode = this.find(item);
+        if (currentNode == null) throw new Error('current item is not in linkedlist');
+        newNode.next = currentNode.next;
+        currentNode.next = newNode;
+
+    }
+    function find(element) {
+        let currentNode = this.head;
+        while (currentNode != null && currentNode.element !== element) {
+            currentNode = currentNode.next
+        }
+        return currentNode
+    }
+    function findPrevious(element) {
+        let currentNode = this.head;
+        while (currentNode.next!=null&&currentNode.next.element!==element) {
+            
+            currentNode=currentNode.next
+        }
+        return currentNode
+    }
+    function remove(element) {
+        let prevNode = this.findPrevious(element)
+        if (prevNode.next != null) {
+            prevNode.next=prevNode.next.next
+        }
+    }
+    function count() {
+        let currentNode=this.head;
+        let c=0
+        while (currentNode.next!=this.head) {
+            c++
+            currentNode=currentNode.next
+        }
+        return c;
+    }
+    function display() {
+        let currentNode=this.head;
+        while (currentNode.next!=this.head) {
+            currentNode=currentNode.next
+            console.log(currentNode)
+        }
+    }
+
+    let link = new LinkedList();
+    link.insert('Apple', 'head');
+    link.insert('Banana', 'Apple');
+    link.insert('Pear', 'Banana');
+
+    function create(total) {
+        let personLink=new LinkedList();
+        personLink.insert(1, 'head');
+        for (let index = 1; index < total; index++) {
+            personLink.insert(index+1,index)
+        }
+        // console.log(personLink)
+        // console.log(personLink.count())
+        // personLink.display()
+        return personLink;
+    }
+    function kill(people,m) {
+       
+      while (people.count()>1) {
+        
+        people.back(m)
+        people.remove(people.currentNode.element)
+       
+      }
+
+    }
+   let pers= create(41)
+    kill(pers,3)
+</script>

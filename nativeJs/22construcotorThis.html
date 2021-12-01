@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function Person(name) {
+            // 变量作用域为函数内部，外部无法访问，防止了变量名冲突和污染
+            var name = '小明';
+            this.name = name;
+            this.sayName = function() {
+                console.log(name);
+            }
+            this.changeName = function(newName) {
+                name = newName;
+            }
+        }
+        // 外部无法访问内部变量
+        var a = new Person('xiao');
+        console.log(a.name)
+</script>

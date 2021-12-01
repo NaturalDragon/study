@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    function jsonp({ url, params, callback }) {
+        return new Promise((reslove, reject) => {
+            var script = document.createElement('script')
+            debugger
+            window.callback = function (data) {
+                debugger
+                reslove(data)
+                document.body.removeChild(script)
+            }
+            var para = { ...params, callback };
+            var arr = []
+            for (let key in para) {
+                arr.push(`${key}=${para[key]}`)
+            }
+            script.src = `${url}?${arr.join('&')}`
+            document.body.appendChild(script)
+        })
+    }
+    //"https://hn.algolia.com/api/v1/search", { query: 'redux', b: 2 }, function (data) {
+
+    let call = jsonp({ url: 'http://127.0.0.1:5009/api/user/GetUserList', params: { pageIndex: 1 }, callback: "callback" })
+
+    call.then(
+        (data) => {
+            console.log(data)
+        },
+        () => {
+
+        }
+    )
+
+</script>

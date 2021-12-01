@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>memoize</title>
+</head>
+
+<body>
+    <input id='testInut'>
+    <button id='testBtn'>点我</button>
+</body>
+
+</html>
+<script>
+    function memoize(fn) {
+        var cache = {};
+        return function () {
+            var args = JSON.stringify(arguments)
+            cache[args] = cache[args] || fn.apply(fn, arguments)
+            return cache[args]
+        }
+    }
+
+
+    function add(number) {
+        let sum = 0;
+        for (let index = 0; index < number; index++) {
+            sum += index
+        }
+        return sum;
+    }
+
+    const memoizeAdd = memoize(add);
+
+    let testInut = document.getElementById('testInut')
+    let testBtn=document.getElementById('testBtn')
+    function show() {
+        let val = testInut.value;
+        let num = Number(val);
+        let result = memoizeAdd(num)
+        console.log(result);
+    }
+    testBtn.onclick=show
+
+</script>

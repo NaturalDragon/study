@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /*
+    async function foo() {
+        console.log(1)
+        // return 3;
+        // return Promise.resolve(4)
+        const thenable = {
+            then(callback) {
+                callback('5')
+            }
+        }
+        return thenable;
+    }
+    let p = foo();
+    p.then(console.log)
+    console.log(2)
+    console.log('----------------------------------------')
+
+
+    async function bar() {
+        console.log('1')
+        throw '3'
+    }
+
+    bar().catch(console.log)
+    console.log('2');
+
+
+
+    (async function () {
+        console.log(await Promise.resolve('gogo'))
+    })()
+
+    */
+
+
+    async function foo() {
+        console.log(await Promise.resolve('foo'));
+    }
+    //     /await 关键字期待（但实际上并不要求）一个实现 thenable 接口的对象，但常规的值也可以。如
+    // 果是实现 thenable 接口的对象，则这个对象可以由 await 来“解包”。如果不是，则这个值就被当作
+    // 已经解决的期约
+    async function bar() {
+        console.log(await 'bar');
+    }
+    //异步函数如果不包含 await 关键字，其执行基本上跟普通函数没有什么区别
+    async function baz() {
+        console.log('baz');
+    }
+    foo();
+    bar();
+    baz();
+
+
+    async function sleep(delay) {
+        return new Promise(resolve => setTimeout(resolve, delay))
+    }
+
+    async function test() {
+        const t0 = Date.now();
+        await sleep(1500)
+        console.log(Date.now() - t0);
+    }
+    test()
+</script>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>反转链表</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    function ListNode(val, next) {
+        this.val = (val === undefined ? 0 : val)
+        this.next = (next === undefined ? null : next)
+    }
+
+    var first = new ListNode(1)
+    var second = new ListNode(2)
+    first.next = second;
+    var third = new ListNode(3)
+    second.next = third
+    var four = new ListNode(4)
+    third.next = four;
+
+    /**
+     * 迭代法
+     * 视频解析 https://ke.qq.com/webcourse/index.html#cid=3065907&term_id=103186001&taid=10593313500350515&type=1024&vid=5285890809407997971
+    */
+    function reverseList(head){
+        var prev=null;
+        var current=head;
+        while(current!=null){
+            var next=current.next;
+            current.next=prev;
+            prev=current;
+            current=next;
+        }
+        return prev;
+    }
+    /**
+     * 递归法
+     * 视频解析
+     * https://ke.qq.com/webcourse/index.html#cid=3065907&term_id=103186001&taid=10593317795317811&type=1024&vid=5285890809407998002
+     * https://ke.qq.com/webcourse/index.html#cid=3065907&term_id=103186001&taid=10593322090285107&type=1024&vid=5285890809407997989
+    */
+    function reverseList1(head){
+        if(head==null||head.next==null){
+            return head
+        }
+        var p=reverseList1(head.next);
+        head.next.next=head;
+        head.next=null;
+        return p;
+}
+</script>

@@ -1,0 +1,70 @@
+
+
+
+.sbox{
+    display: flex;
+    display: -webkit-flex;
+    /* flex-direction: row;
+    flex-wrap: wrap-reverse; */
+    flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: flex-start;
+    width: 90%;
+    border: 1px solid #ddd;
+
+    height: 300px;
+   
+}
+.sbox-item{
+   width: 20%;
+   border: solid red;
+   order: 0;
+}
+.sbox-item-one{
+    height: 100px;
+    line-height: 100px;
+    flex-shrink: 4;
+    
+}
+.sbox-item-two{
+    height: 150px;
+    line-height: 150px;
+   
+}
+.sbox-item-three{
+    height: 200px;
+    line-height: 200px;
+}
+
+.container {
+    background-color: green;
+    overflow: hidden;
+  }
+
+  .inner {
+    background-color: lightblue;
+    margin: 10px 0;
+  }
+  .bfc{
+      overflow: hidden;
+  }
+
+  .left {
+    width: 100px;
+    height: 150px;
+    float: left;
+    background: rgb(139, 214, 78);
+    text-align: center;
+    line-height: 150px;
+    font-size: 20px;
+}
+
+.right {
+    overflow: hidden;
+    height: 300px;
+    background: rgb(170, 54, 236);
+    text-align: center;
+    line-height: 300px;
+    font-size: 40px;
+}

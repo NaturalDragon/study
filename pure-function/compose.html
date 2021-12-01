@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>compose</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ramda/0.26.0/ramda.min.js"></script>
+    <script src="/js/data.js"></script>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+
+    function compose(...funcs) {
+        if (funcs.length === 0) {
+            return arg => arg
+        }
+
+        if (funcs.length === 1) {
+            return funcs[0]
+        }
+
+        return funcs.reduce((a, b) => (...args) => a(b(...args)))
+    }
+
+    function compose(){
+        var args=arguments;
+        var start=arguments.length-1;
+        return function(){
+            var i=start;
+            var result=args[start].apply(this,arguments);
+            while(i--){
+                result=args[i].call(this,result);
+            }
+            return result;
+        }
+    }
+    /*
+    let compose = function (fn1, fn2) {
+        return function (x) {
+            return fn1(fn2(x))
+        }
+    }
+
+    let toUpperCase = function (x) { return x.toUpperCase(); };
+    let exclaim = function (x) { return x + '!'; };
+
+    let composeFn=compose(toUpperCase,exclaim);
+    composeFn('hellow')
+    */
+
+    // const fetchData = function () {
+    //     return Promise.resolve(data)
+    // }
+
+    /*
+    const getCompleteTaskSummaries = function (username) {
+        return fetchData().then(data => {
+            return data.tasks
+        }).then(tasks => {
+            return tasks.filter(ele => {
+                return ele.username === username;
+            })
+        }).then(tasks => {
+            return tasks.filter(ele => {
+                return !ele.complete
+            })
+        }).then(tasks => {
+            return tasks.map(ele => {
+                return {
+                    id: ele.id,
+                    dueDate: ele.dueDate,
+                    title: ele.title,
+                    priority: ele.priority
+                }
+            })
+        }).then(tasks=>{
+            return tasks.sort(function(a,b){return (+new Date(a.dueDate))-(+new Date(b.dueDate))})
+        //    return tasks.sort(function(first, second) {
+        //          var a = first.dueDate,
+        //              b = second.dueDate;
+        //          return a < b ? -1 : a > b ? 1 : 0;
+        //      });
+        })
+        .then(tasks=>{
+            console.log(tasks)
+        })
+
+       
+    }
+
+    getCompleteTaskSummaries('Scott')
+    */
+
+    // 编写基本函数
+    //    var getIncompleteTaskSummaries = function(membername) {
+    //     return fetchData()
+    //         .then(R.prop('tasks'))
+    //         .then(R.filter(R.propEq('username', membername)))
+    //         .then(R.filter(R.propEq('complete', false)))
+    //         .then(R.map(R.pick(['id', 'dueDate', 'title', 'priority'])))
+    //         .then(R.sortBy(R.prop('dueDate')))
+    //         .then(console.log)
+    // };
+
+    // getIncompleteTaskSummaries('Scott')
+
+
+    let curry = R.curry;
+
+    // 第二版 pointfree 改写
+    var fetchData = function () {
+        return Promise.resolve(data)
+    };
+    var prop = curry(function (name, obj) {
+        return obj[name];
+    });
+
+    var propEq = curry(function (name, val, obj) {
+        return obj[name] === val;
+    });
+
+    var filter = curry(function (fn, arr) {
+        return arr.filter(fn)
+    });
+
+    var map = curry(function (fn, arr) {
+        return arr.map(fn)
+    });
+
+    var pick = curry(function (args, obj) {
+        var result = {};
+        for (var i = 0; i < args.length; i++) {
+            result[args[i]] = obj[args[i]]
+        }
+        return result;
+    });
+    var sortBy = curry(function (fn, arr) {
+        return arr.sort(function (a, b) {
+            var a = fn(a),
+                b = fn(b);
+            return a < b ? -1 : a > b ? 1 : 0;
+        })
+    });
+
+
+    /*
+
+    var getIncompleteTaskSummaries = function(membername) {
+    return fetchData()
+        .then(prop('tasks'))
+        .then(filter(propEq('username', membername)))
+        .then(filter(propEq('complete', false)))
+        .then(map(pick(['id', 'dueDate', 'title', 'priority'])))
+        .then(sortBy(prop('dueDate')))
+        .then(console.log)
+};
+====>  */
+    var getIncompleteTaskSummaries = function (membername) {
+        return fetchData().then(tasks => {
+            return prop('tasks')(tasks)
+        }).then(
+            tasks => {
+                return filter(task => {
+                    return propEq('username', membername)(task)
+                })(tasks)
+            }
+        )
+            .then(tasks => {
+                return filter(task => {
+                    return propEq('complete', false)(task)
+                })(tasks)
+            })
+            .then(tasks => {
+                return map(task => {
+                    return pick(['id', 'dueDate', 'title', 'priority'])(task)
+                })(tasks)
+            })
+            .then(tasks => {
+                return sortBy(prop('dueDate'))(tasks)
+            })
+            .then(console.log)
+    };
+
+    getIncompleteTaskSummaries('Scott')
+</script>

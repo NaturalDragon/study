@@ -1,0 +1,12 @@
+{
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "启动webpack调试程序",
+            "program": "${workspaceFolder}/debug/start.js"
+        }
+     
+    ]
+  }
+  

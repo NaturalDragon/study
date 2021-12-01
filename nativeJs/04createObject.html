@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>createObject</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script >
+ //创建对象的各种方式
+
+/*
+一、工厂模式
+缺点：对象无法识别，因为所有的实例都指向一个原型
+*/
+function CreatePerson(name){
+    var o=new Object();
+    o.name=name;
+    o.getName=function(){
+        console.log(this.name)
+    }
+    return o;
+}
+
+var per= CreatePerson('lizn')
+per.getName();
+
+
+/*
+二、构造函数模式
+优点：实例可以识别为一个特定的类型
+缺点：每次创建实例时，每个方法都要被创建一次
+*/
+function Person(name){
+    this.name=name;
+    this.getName=function(){
+        console.log(this.name)
+    }
+    return 1;
+}
+
+var per1=new Person('cy')
+per1.getName()
+
+/*
+二、1构造函数模式优化
+优点:函数不会每次创建实例都被创建
+*/
+function Person1(name){
+    this.name=name
+    this.getName=getName
+}
+function getName(){
+    console.log(this.name)
+}
+var per11=new Person1('cyy')
+per11.getName()
+/*
+三、原型模式
+优点：方法不会被重新创建
+缺点：所有属性和方法都共享； 不能初始化参数
+*/
+function PersonPrototype(){
+}
+PersonPrototype.prototype.name='lyf'
+PersonPrototype.prototype.getName=function(){
+    console.log(this.name)
+}
+
+var per2=new PersonPrototype();
+per2.getName()
+
+
+/*
+三、1 原型模式优化
+优点：封装性好了一些
+缺点：重写了原型，丢失了constructor属性
+*/
+function PersonPrototype1(){}
+PersonPrototype1.prototype={
+    name:'lzz',
+    getName:function(){
+        console.log(this.name)
+    }
+}
+
+var per22=new PersonPrototype1();
+per22.getName()
+
+/*
+三、2 原型模式优化
+优点：实例可以通过constructor属性找到所属构造函数
+缺点：原型模式有的缺点还是有
+*/
+function PersonPrototype2(){}
+PersonPrototype2.prototype={
+    constructor:PersonPrototype2,
+    name:'lxz',
+    getName:function(){
+        console.log(this.name)
+    }
+}
+var per222=new PersonPrototype2();
+per222.getName()
+
+/*
+四、组合模式
+*/
+function PersonCompose(name){
+        this.name=name;
+}
+PersonCompose.prototype={
+    constructor:PersonCompose,
+    getName:function(){
+        console.log(this.name)
+    }
+}
+var per2222=new PersonCompose('lizncylyf')
+per2222.getName()
+
+
+/*
+五、动态原型模式
+*/
+function DynamicProtoType(name){
+    this.name=name;
+    if(typeof this.getName!=='function'){
+        DynamicProtoType.prototype.getName=function(){
+            console.log(this.name)
+        }
+      
+    }
+}
+
+var dyp=new DynamicProtoType('dynamic')
+var dyp1=new DynamicProtoType('dynamic1')
+
+
+function DynamicProtoType1(name){
+    this.name=name;
+    if(typeof this.getName!=='function'){
+        DynamicProtoType1.prototype={
+            constructor:DynamicProtoType1,
+            getName:function(){
+                console.log(this.name)
+            }
+        }
+    }
+ 
+}
+
+var dyp2=new DynamicProtoType1('dynamic2')
+var dyp3=new DynamicProtoType1('dynamic3')
+// dyp2.getName();
+// dyp3.getName()
+
+
+function DynamicProtoType2(name){
+    this.name=name;
+    if(typeof this.getName!=='function'){
+        DynamicProtoType2.prototype={
+            constructor:DynamicProtoType2,
+            getName:function(){
+                console.log(this.name)
+            }
+        }
+        return new DynamicProtoType2(name)
+    }
+ 
+}
+
+</script>

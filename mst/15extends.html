@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function A() {
+  this.name = 'A';
+}
+
+A.prototype.parent = 'parent';
+
+A.prototype.showName = function() {
+  console.log(this.name);
+}
+
+A.func = function() {
+  console.log('function');
+}
+
+
+function inheritPrototype(Child, Parent) {
+        var prototype =ToObject(Parent.prototype);//创建父对象的一个副本
+        prototype.constructor = Child;//为这个创建的副本添加constructor属性，从而弥补因重新原型而失去的默认的constructor属性
+        Child.prototype = prototype//将创建的对象（副本）赋值给子类型的原型
+    }
+    function ToObject(o) {
+        function F() { }
+        F.prototype = o;
+        return new F();
+    }
+
+    function B(){
+        A.call(this)
+    }
+
+    inheritPrototype(B,A);
+
+
+    class C extends A{
+        
+    }
+</script>

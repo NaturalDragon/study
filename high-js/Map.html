@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    let map = new Map([['name', 'lizn'], ['age', 10]])
+
+    let keyObj = {};
+    let keyObj1 = { oo: 1 };
+    let keyFun = function () { }
+    let keyString = "hao hai yo"
+
+    map.set(keyObj, { year: 2004 })
+    map.set(keyObj1, { month: 11 })
+    map.set(keyFun, () => { console.log(1) })
+    map.set(keyString, "woshiyigebing")
+
+    //NaN作为键
+    map.set(NaN, 'not a number')
+    // console.log(Number('a'))
+    // console.log(NaN)
+    for (const [key, value] of map) {
+        // console.log(key)
+        // console.log(value)
+    }
+    for (const [key, value] of map.entries()) {
+        // console.log(key)
+        // console.log(value)
+    }
+    for (const [key, value] of map[Symbol.iterator]()) {
+        console.log(key)
+        console.log(value)
+    }
+    map.forEach((value, key) => {
+        //  console.log(key, value)
+    })
+
+    let first = new Map([[1, 'wo'], [2, 'ni']])
+    let second = new Map([[2, 'ta'], [3, 'da']])
+    let newMap = new Map([...first, ...second])
+</script>

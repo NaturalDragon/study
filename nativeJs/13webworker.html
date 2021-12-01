@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>web workers</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    if(window.Worker){
+
+        let worker=new Worker('js/work.js')
+        worker.postMessage([10, 24])
+        worker.onmessage=function(e){
+            console.log(e);
+        }
+    }
+
+
+    class Parent{
+        constructor(name){
+            this.name=name||'lizn'
+        }
+    }
+
+    class Children extends Parent{
+        constructor(){
+            super('name')
+        }
+    }
+
+    let child=new Children();
+</script>

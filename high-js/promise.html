@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    let p = Promise.reject();
+    let onRejected = function (e) {
+        setTimeout((a) => {
+            console.log(a)
+        }, 0, 'rejected123');
+    };
+    let onFinally = function () {
+        setTimeout(console.log, 0, 'Finally!')
+    }
+    p.then(null, onRejected)
+    p.catch(onRejected)
+
+    let p1 = Promise.resolve();
+    p.finally(onFinally)
+    p1.finally(onFinally)
+
+
+    let pChain = new Promise((resolve, reject) => {
+        console.log('p1 executor');
+        setTimeout(resolve, 1000)
+    })
+    pChain.then(() => new Promise((resolve, reject) => {
+        console.log('p2 executor');
+        setTimeout(resolve, 2000)
+    })).then(() => new Promise((resolve, reject) => {
+        console.log('p3 executor');
+        setTimeout(resolve, 3000)
+    }))
+
+</script>

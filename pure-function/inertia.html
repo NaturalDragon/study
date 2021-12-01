@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>惰性函数</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+  let foo = function () {
+        let t = new Date();
+        foo = function () {
+            return t;
+        }
+        return foo();
+    }
+
+
+    foo()
+
+    // function addEvent(type, el, fn) {
+    //     if (window.addEventListener) {
+    //         ele.addEventListener(type, fn, false)
+    //     } else if (window.attachEvent) {
+    //         el.attachEvent('on' + type, fn)
+    //     }
+    // }
+
+    function addEvent(type, el, fn) {
+        if (window.addEventListener) {
+            addEvent = el.addEventListener(type, fn, false)
+        }
+        else if (window.attachEvent) {
+            addEvent = function (type, el, fn) {
+                el.attachEvent('on' + type, fn);
+            }
+        }
+    }
+    
+</script>

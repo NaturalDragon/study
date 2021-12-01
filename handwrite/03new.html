@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    function Student(name, age) {
+        this.name = name
+        this.age = age
+       return 1
+    }
+
+    function myNew(obj, ...args) {
+        const newObj = {}
+        newObj.__proto__ = obj.prototype;
+        let result = obj.apply(newObj, args)
+        return typeof result === 'object' ? result : newObj;
+    }
+
+  
+    var stu=myNew(Student,'lizn',28)//new Student('cy',18)//
+</script>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    let obj = {
+        name: 'lizn'
+    }
+    var name = 'cy'
+    const func = () => {
+        console.log(this.name)
+    }
+    function func1() {
+        console.log(this.name)
+    }
+    func.apply(obj)
+    func1.apply(obj)
+
+
+    function getSum(...values) {
+        console.log(arguments)
+        console.log(values)
+    }
+
+    function createCompareFun(propertyName) {
+        return function (obj1, obj2) {
+            let value1 = obj1[propertyName];
+            let value2 = obj2[propertyName];
+            return value1 - value2
+            // if (value1 < value2) {
+            //     return -1;
+            // }
+            // else if (value1 > value2) {
+            //     return 1
+            // }
+            // else {
+            //     return 0
+            // }
+        }
+    }
+    let data = [
+        { name: "Zachary", age: 28 },
+        { name: "Nicholas", age: 29 },
+        { name: "Amy", age: 25 }
+    ];
+    console.log(data.sort(createCompareFun('age')))
+
+    function factorial(num) {
+        if (num <= 1) {
+            return 1
+        }
+        return num * factorial(num - 1)
+    }
+    function factorial1(num) {
+        // 'use strict'
+        if (num <= 1) return 1
+        return num * arguments.callee(num - 1)
+    }
+    let factorial2 = (function f(num) {
+        if (num <= 1) {
+            return 1
+        }
+        return num * f(num - 1)
+    })
+    function Queen() {
+        this.idCard = 'lizn123'
+        setTimeout(function () {
+            //new 调用 这个this指向window
+            console.log(this.idCard)
+        }, 1000)
+    }
+    function King() {
+        this.idCard = 'cy'
+        console.log(new.target)
+        setTimeout(() => {
+            //new调用 this指向King的实例
+            console.log(this.idCard)
+        }, 1000);
+    }
+    new Queen();
+    new King();
+
+
+    function inner() {
+        // 'use strict'
+        console.log(inner.caller)
+        console.log(arguments.callee.caller)
+
+    }
+    function outer() {
+        inner();
+    }
+    outer()
+
+
+    window.identity = 'The Window';
+    let object = {
+        identity: 'My Object',
+        getIdentityFunc() {
+            let that = this;
+            return function () {
+                return this.identity;
+            };
+        }
+    };
+    console.log(object.getIdentityFunc()()); // 'The Window'
+
+    // (function(){
+    //     for (var i = 0; i < 2; i++) {
+    //     console.log(i);
+    // }
+    // })()
+    // console.log(i)
+
+    // for (let i = 0; i < 2; i++) {
+    //     console.log(i);
+    // }
+    // console.log(i)
+
+    // {
+    //     let j=0
+    //     for ( j = 0; j < 2; j++) {
+    //         console.log(j);
+    //     }
+    // }
+    // console.log(j)
+
+
+    for(let i=0;i<6;i++){
+        setTimeout(() => {
+            console.log(i)
+        });
+    }
+
+</script>

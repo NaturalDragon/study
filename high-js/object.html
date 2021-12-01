@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // 'use strict'
+    var person = {}
+    Object.defineProperty(person, 'name', {
+        writable: true, //是否可修改
+        configurable: true, //是否可通过delete 删除属性
+        enumerable: false,//是否可通过for in 循环返回属性
+        value: 'lizn'
+    })
+    Object.defineProperty(person, 'age', {
+        writable: true,
+        configurable: true,
+        enumerable: true,
+        value: 18
+    })
+    console.log(person.name)
+    for (const key in person) {
+        if (Object.hasOwnProperty.call(person, key)) {
+            console.log(key)
+
+        }
+    }
+    delete person.name
+
+    var book = {
+        _year: 2004,
+        edition: 1
+    }
+    Object.defineProperty(book, 'year', {
+        get() {
+            return this._year
+        },
+        set(newValue) {
+            if (newValue > 2004) {
+                this._year = newValue;
+                this.edition = newValue - 2004
+            }
+        }
+    })
+
+    let book1 = {}
+
+    Object.defineProperties(book1, {
+        _year: {
+            value: 2004
+        },
+        edition: {
+            value: 1
+        },
+        year: {
+            get() {
+                return this._year
+            },
+            set(newValue) {
+                if (newValue > 2004) {
+                    this._year = newValue;
+                    this.edition = newValue - 2004
+                }
+            }
+
+        }
+    })
+
+
+    function Person() {
+        this.name = 'lizn';
+        this.age = 18;
+        this.sex = true
+    }
+    Person.prototype.bithday = new Date();
+
+    let per = new Person();
+    Object.defineProperty(per, 'name', {
+        enumerable: false
+    })
+
+    let des, source, result;
+    des = {};
+    let sym = Symbol('foo')
+    source = { id: 'id1', dep: { phone: 'ios', get() { }, set() { } }, s: sym }
+    result = Object.assign(des, source, per)
+
+
+    //object.is
+
+    function recursivelyCheckEqual(x, ...rest) {
+        return Object.is(x, rest[0]) &&
+            (rest.length < 2 || recursivelyCheckEqual(...rest));
+    }
+
+    let methodKey = 'sayName'
+    let obj = {
+        [methodKey](name) { console.log(name) }
+    }
+    obj.sayName('lizn')
+
+    let obj1 = {
+        name: 'lizn',
+        age: 18
+    }
+    let { name: pName, age: pAge, job = 'enginer' } = obj1
+
+
+    let { length: l } = 'footbar'
+    let { constructor: c } = 4
+
+    let response = {
+        success: true,
+        data: {
+            name: 'lizn',
+            age: 18
+        }
+    }
+    let selfData;
+    ({ data: selfData } = response)
+
+
+
+    let objOnw={}
+    Object.defineProperty(objOnw,'name',{
+        enumerable:false,
+        value:'lizn'
+    })
+    Object.defineProperty(objOnw,'id',{
+        enumerable:true,
+        value:'opid'
+    })
+    let symbolKey=Symbol('key1')
+    objOnw[symbolKey]=12331
+
+    console.log(Object.getOwnPropertyNames(objOnw));//可以获取可枚举属性为false的属性，但不包括Symbol值作为名称的属性
+    console.log('------------------------------')
+    console.log(Object.keys(objOnw))//只可以获取可枚举属性为true的属性，但不包括Symbol值作为名称的属性
+    console.log('------------------------------')
+    console.log(Object.getOwnPropertyDescriptors(objOnw))//获取除原型外自身所有属性，包括Symbol值作为名称的属性
+    console.log('------------------------------')
+    console.log(Object.getPrototypeOf(objOnw))//返回指定对象的原型
+    console.log('------------------------------')
+    console.log(Object.getOwnPropertySymbols(objOnw))//获取指定对象的所有 Symbol 属性的数组
+    console.log('------------------------------')
+    console.log(objOnw.hasOwnProperty('name'))//会忽略掉那些从原型链上继承到的属性
+    console.log('------------------------------')
+    console.log('bithday' in per)//in 可以检测从原型上继承的属性
+
+</script>

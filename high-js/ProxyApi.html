@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /*
+
+    // 1、get捕获器
+    // 如果 target.property 不可写且不可配置，则处理程序返回的值必须与 target.property 匹配。
+    // 如果 target.property 不可配置且[[Get]]特性为 undefined， 处理程序的返回值也必须是 undefined
+    const myTarget = { foo: '12' };
+    const proxy = new Proxy(myTarget, {
+        get(target, property, receiver) {
+            console.log('get()');
+            return Reflect.get(...arguments)
+        }
+    });
+    proxy.foo;
+// get()
+*/
+
+    /*
+        // 2、set
+        // 如果 target.property 不可写且不可配置，则不能修改目标属性的值。
+    // 如果 target.property 不可配置且[[Set]]特性为 undefined，则不能修改目标属性的值。
+    // 在严格模式下，处理程序中返回 false 会抛出 TypeError。
+        let symbolKey=Symbol('name')
+        const myTarget = { foo: '12',symbolKey:'hehe' };
+        const proxy = new Proxy(myTarget, {
+            set(target,property,value,receiver){
+                console.log(target,property,value,receiver)
+                return Reflect.set(...arguments)
+            }
+        })
+        */
+
+    /*
+        // 3、has
+        const myTarget = {name:12};
+        const proxy = new Proxy(myTarget, {
+            has(target,property){
+                console.log(target,property)
+                return Reflect.has(...arguments)
+            }
+        })
+        let d= 'name' in  proxy ;
+        */
+
+    // 4、defineProperty
+    const myTarget = {name:1};
+    const proxy = new Proxy(myTarget, {
+        defineProperty(target, property, descriptor) {
+            console.log(target, property, descriptor)//{} "id" {value: 9}
+            return Reflect.defineProperty(...arguments)
+        },
+        getOwnPropertyDescriptor(target, property) {
+            console.log(target, property)
+            return Reflect.getOwnPropertyDescriptor(...arguments)
+        },
+        deleteProperty(target,property){
+            console.log(target,property)
+            return Reflect.deleteProperty(...arguments)
+        },
+        ownKeys(target){
+            console.log(target)
+            return Reflect.ownKeys(...arguments)
+        }
+    })
+    Object.defineProperty(proxy, 'id', { value: 9 })
+    let ex=  Object.getOwnPropertyDescriptor(proxy,'id')
+  // console.log( delete proxy.id)
+  let keys=  Object.keys(proxy)
+  let keys2=Object.getOwnPropertyNames(proxy)
+</script>

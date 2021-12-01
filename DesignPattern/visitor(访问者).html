@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    class DocmentReader {
+        constructor(name) {
+            this.name = name
+        }
+        access() {
+            let docVisitor=new  DocmentVisitor();
+            console.log(this.name);
+            console.log(docVisitor.readCompele(this))
+        }
+    }
+
+    class WebDeveloper extends DocmentReader {
+        constructor(name) {
+            super(name);
+        }
+    }
+
+    class Manager extends DocmentReader {
+        constructor(name) {
+            super(name)
+        }
+    }
+    class Tester extends DocmentReader {
+        constructor(name) {
+            super(name)
+        }
+    }
+
+    class DocmentVisitor {
+        readCompele(visitor) {
+            if (visitor.constructor === Manager) {
+                return {
+                    beginTime: '2021-01-01',
+                    endTime: '2022-01-01',
+                    functions: '用户登录，验证码',
+                    developmentTime: '2021-01-05~2020-06-30',
+                    testTime: '2020-07-01~2020-12-01'
+                }
+            } else if (visitor.constructor === WebDeveloper) {
+                return {
+                    functions: '用户登录页面开发',
+                    difficulty: 'html + js + css'
+                }
+            } else if (visitor.constructor === Tester) {
+                return {
+                    functions: '100 个测试用例'
+                }
+            }
+        }
+    }
+
+    var manager=new Manager('经理');
+    manager.access();
+
+    var webDeveloper=new WebDeveloper('开发');
+    webDeveloper.access();
+
+    var tester=new Tester('测试');
+    tester.access();
+</script>

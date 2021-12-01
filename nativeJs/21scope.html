@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /*
+    var value = 1;
+
+function foo() {
+    console.log(value);
+}
+
+function bar() {
+     value = 2;
+    foo();
+}
+
+bar();
+*/
+
+/*
+var scope = "global scope";
+function checkscope(){
+    var scope = "local scope";
+    function f(){
+        return scope;
+    }
+    return f;
+}
+checkscope()();
+*/
+
+/*
+var foo = function () {
+
+console.log('foo1');
+
+}
+
+foo();  // foo1
+
+var foo = function () {
+
+console.log('foo2');
+
+}
+
+foo(); // foo2
+*/
+
+/*
+function foo() {
+
+console.log('foo1');
+
+}
+
+foo();  // foo2
+
+function foo() {
+
+console.log('foo2');
+
+}
+
+foo(); // foo2
+*/
+
+console.log(f1); // function f1(){}
+function f1() {} // 函数声明
+console.log(f2); // undefined
+var f2 = function() {}; // 函数表达式
+
+
+</script>

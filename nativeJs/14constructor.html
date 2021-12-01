@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>constructor</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+/*
+    let getArea = 'getArea'
+    class Point {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this._name;
+
+        }
+        toString() {
+            return '(' + this.x + ', ' + this.y + ')';
+        }
+
+        callAdd() {
+            return this.x + this.y;
+        }
+
+        get name() {
+            return this._name;
+        }
+        set name(value) {
+            this._name = value
+        }
+        [getArea]() {
+            return 'ssss'
+        }
+    }
+
+    Point.prototype.calDel = function () { }
+    Object.assign(Point.prototype, {
+        callMut() {
+
+        }
+    })
+    let p = new Point();
+
+
+    const MyClass = class Me {
+
+    }
+    const MyStudent = class {
+
+    }
+
+    let person = new class {
+        constructor(name) {
+            this.name = name;
+        }
+
+        sayName() {
+            console.log(this.name);
+        }
+    }('李三')
+
+
+    class Foo {
+
+       
+        count = 9;
+        static age = 10;
+        #num = '2009'
+        constructor(...args) {
+            this.args = args
+        }
+        #getYear() {
+            return this.count
+        }
+        getAge() {
+            return this.#getYear();
+        }
+        *[Symbol.iterator]() {
+            for (const arg of this.args) {
+                yield arg;
+            }
+        }
+
+        static bar() {
+            this.baz()
+        }
+
+        static baz() {
+            console.log('mm');
+        }
+    }
+
+    for (const iterator of new Foo('lizn', 'cy', 'lyf')) {
+        console.log(iterator);
+    }
+
+    Foo.bar()
+    const foo=new Foo();
+
+    */
+
+   function Person(name){
+       if(new.target===Person){
+           this.name=name
+       }else{
+           throw new Error('')
+       }
+   }
+
+   let per=new Person('lizn')
+
+   
+</script>

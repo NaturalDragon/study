@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    let weakMap = new WeakMap();
+    let keyObj = {};
+    let keyFun = function () { }
+    let keyString = "hao hai yo"
+    let date = new Date();
+    let regex = /^d*/g
+    let objString = new String('woqu')
+    let objNumber = new Number(10)
+    weakMap.set(keyObj, { a: 112 })
+    weakMap.set(keyFun, () => { console.log(12) })
+    //  weakMap.set(keyString, 'wobushi')//typeError
+    //  weakMap.set(Symbol(), 12)
+    weakMap.set(date, 12)
+    weakMap.set(regex, '2323')
+    weakMap.set(objString, '232323')
+    weakMap.set(objNumber, 4433)
+</script>

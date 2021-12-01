@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>classextends</title>
+</head>
+
+<body>
+<div class=""></div>
+</body>
+
+</html>
+<script>
+    class Point {
+        constructor(name) {
+            this.name = name;
+           
+        }
+
+        say(){
+            console.log('hellow')
+        }
+        width=29
+        static Height=19
+    }
+
+    class ColorPoint extends Point {
+        constructor(name,age) {
+            super(name);
+            this.age = age; 
+            // super.say()
+            // console.log(super.Height)
+            // console.log(super.width)
+        }
+    }
+
+
+    let co=new ColorPoint('lizn',29)
+</script>

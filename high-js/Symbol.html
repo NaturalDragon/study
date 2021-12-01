@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+
+<script>
+    // 1.Symbol.for
+    let mdnClass = Symbol.for("mdn.class")
+    console.log(mdnClass === Symbol.for('mdn.class'))
+    // 2.Symbol.asyncIterator
+    const myAsyncIterator = new Object();
+    myAsyncIterator[Symbol.asyncIterator] = async function* () {
+        yield 1
+        yield 2;
+        yield 3;
+    };
+    (async () => {
+        for await (const x of myAsyncIterator) {
+            console.log(x)
+        }
+    })();
+
+    // 3.Symbol.hasInstance
+
+    class MyArray {
+        static [Symbol.hasInstance](instance) {
+            return Array.isArray(instance)
+        }
+    }
+    console.log([1] instanceof MyArray)
+    class MyNumber {
+        static [Symbol.hasInstance](instance) {
+            return Number.isFinite(instance)
+        }
+    }
+    console.log(1 instanceof MyNumber)
+
+    // 4.Symbol.isConcatSpreadable
+    let arr1 = [1, 2, 3]
+    let arr2 = ['a', 'b', 'c']
+    let arr3 = arr1.concat(arr2)
+    console.log(arr3)
+    arr2[Symbol.isConcatSpreadable] = false
+    console.log(arr1.concat(arr2))
+
+    let arrayLike = {
+        [Symbol.isConcatSpreadable]: true,
+        length: 2,
+        0: "hello",
+        1: 'world'
+    }
+    console.log(arr1.concat(arrayLike))
+
+    //5.Symbol.replace
+    class Replace1 {
+        constructor(value) {
+            this.value = value
+        }
+        [Symbol.replace](instance) {
+            return `${instance}-${this.value}`
+        }
+    }
+    console.log('lizn'.replace(new Replace1('cy')))
+    //  6.Symbol.search
+
+    class CaseInsensitiveSearch {
+        constructor(value) {
+            this.value = value.toLowerCase()
+        }
+        [Symbol.search](instance) {
+            return instance.toLowerCase().indexOf(this.value)
+        }
+    }
+    console.log('footbar'.search(new CaseInsensitiveSearch("BaR")))
+
+    //  7.Symbol.species
+
+    class SelfArray extends Array {
+        static get [Symbol.species]() { return Array }
+    }
+    let self = new SelfArray(1, 2, 3)
+    let selfMap = self.map(e => e * e)
+    console.log(selfMap instanceof SelfArray)//false
+
+
+    //  8.Symbol.split
+    const exp = {
+        pat: 'in',
+        [Symbol.split](instance) {
+            return instance.split(this.pat)
+        }
+    }
+    console.log('dayinlove'.split(exp))
+
+    class Split1 {
+        constructor(value) {
+            this.value = value
+        }
+        [Symbol.split](string) {
+            const index = string.indexOf(this.value);
+            return `${this.value}${string.substr(0, index)}/${string.substr(index + this.value.length)}`;
+        }
+    }
+    console.log('foobar'.split(new Split1('foo')))
+
+    // 9.Symbol.toPrimitive
+    const obj={
+        [Symbol.toPrimitive](hint){
+                if(hint=='number'){
+                    return 10
+                }
+                else if(hint=='string'){
+                    return 'hai'
+                }
+                return true
+        }
+    }
+    console.log(+obj)
+    console.log(`${obj}`)
+    console.log(obj+'')
+
+    // 10.Symbol.toStringTag
+    class ValidtorClass{
+        get [Symbol.toStringTag](){
+            return 'ValidtorClass'
+        }
+    }
+    console.log(Object.prototype.toString.call(new ValidtorClass()))
+</script>

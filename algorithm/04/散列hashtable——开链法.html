@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    function HashTable() {
+        this.table = new Array(137);
+        this.simpleHash = simpleHash;
+        this.betterHash = betterHash;
+        this.showDistro = showDistro;
+        this.put = put;
+        this.get = get;
+        this.buildChains = buildChains;
+    }
+
+    //开链法
+    function buildChains() {
+        for (let i = 0; i < this.table.length; i++) {
+            this.table[i] = new Array();
+        }
+    }
+        function simpleHash(data) {
+            let total = 0;
+            for (let index = 0; index < data.length; index++) {
+                total += data.charCodeAt(index)
+            }
+            console.log(`hash value:${data}--->${total}`)
+            return total % this.table.length;
+        }
+        function betterHash(string) {
+            const H = 37;
+            var total = 0;
+            for (var i = 0; i < string.length; ++i) {
+                total += H * total + string.charCodeAt(i);
+            }
+            total = total % this.table.length;
+            if (total < 0) {
+                total += this.table.length - 1;
+            } return parseInt(total);
+        }
+        function put(key, data) {
+            let pos = this.betterHash(key);
+            let index=0;
+            while (this.table[pos][index]!==undefined) {
+                index++
+            }
+            this.table[pos][index] = data
+
+        }
+        function get(key) {
+            let pos = this.betterHash(key);
+            let index=0;
+            while (this.table[pos][index]&& this.table[pos][index]!==key) {
+                index++
+            }
+            return this.table[pos][index]
+        }
+        function showDistro() {
+            var n = 0;
+            for (var i = 0; i < this.table.length; ++i) {
+                if (this.table[i][0] != undefined) {
+                    console.log(i + ": " + this.table[i]);
+                }
+            }
+        }
+
+        var someNames = ["David", "Jennifer", "Donnie", "Raymond",
+            "Cynthia", "Mike", "Clayton", "Danny", "Jonathan"];
+        let hashTable = new HashTable();
+        hashTable.buildChains();
+        for (let index = 0; index < someNames.length; index++) {
+            hashTable.put(someNames[index], someNames[index])
+        }
+        hashTable.showDistro()
+    
+
+</script>

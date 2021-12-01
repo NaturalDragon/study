@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>async-await</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    // function* myGenerator(){
+    //     yield 1;
+    //     yield 2;
+    //     yield 3;
+    //     return 4;
+    // }
+    function* myGenerator() {
+        try {
+            yield Promise.resolve(1);
+            yield Promise.resolve(2);
+            yield Promise.resolve(3);
+            yield 4;
+            yield Promise.reject('2017')
+        }
+        catch (er) {
+            console.log(er)
+        }
+    }
+
+    var g = myGenerator();
+    // g.next().value.then(val => {
+    //     console.log(val);
+    //     g.next().value.then(val=>{
+    //         console.log(val)
+    //         g.next().value.then(val=>{
+    //             console.log(val)
+    //         })
+    //     })
+    // })
+
+
+    function run(gen) {
+        var g = gen();
+        function _next(val) {
+            var res = g.next(val);
+            if (res.done) return res.value
+            res.value.then(val => {
+                console.log(val)
+                _next(val)
+            })
+        }
+        _next()
+    }
+
+
+    function run1(gen) {
+        return new Promise((resolve, reject) => {
+            var g = gen();
+            function _next(val) {
+                try {
+                    var res = g.next(val);
+
+                } catch (error) {
+                    return reject(error)
+                }
+                if (res.done) {
+                    return resolve(res.value)
+                }
+                Promise.resolve(res.value).then(
+                    val => {
+                        console.log(val)
+                        _next(val)
+                    },
+                    err => { throw err }
+                )
+            }
+            _next()
+        })
+    }
+    run1(myGenerator)
+</script>

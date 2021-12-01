@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    //1. Object.fromEntries()
+    let map = new Map([['a', 1], ["b", 2]])
+    let objEn = Object.fromEntries(map);
+    console.log(objEn)
+
+    console.log(Object.fromEntries([['a', 1], ["c", 6]]))
+
+
+    const object1 = { a: 1, b: 2, c: 3, _test: 10 };
+    Object.defineProperty(object1, 'test', {
+        get() {
+            return this._test
+        },
+        set(newValue) {
+            this._test = newValue
+        }
+    })
+    console.log('Object.freeze------------------------------------------------------------------')
+
+    // 2.Object.freeze()
+
+    let freezeObj = Object.freeze(object1)//不可删除属性，不可更改值
+    function fail() {
+        'use strict';
+        //object1.a = 2
+    }
+    fail()
+
+    let arr = [0]
+    Object.freeze(arr)
+
+    //浅冻结
+    let obj2 = {
+        internal: {},
+        interArr: []
+    }
+    Object.freeze(obj2)
+    obj2.internal.a = 12//可添加
+    obj2.interArr.push('a')//可添加
+
+    // 深冻结函数.
+    function deepFreeze(obj) {
+
+        // 取回定义在obj上的属性名
+        var propNames = Object.getOwnPropertyNames(obj);
+
+        // 在冻结自身之前冻结属性
+        propNames.forEach(function (name) {
+            var prop = obj[name];
+
+            // 如果prop是个对象，冻结它
+            if (typeof prop == 'object' && prop !== null)
+                deepFreeze(prop);
+        });
+
+        // 冻结自身(no-op if already frozen)
+        return Object.freeze(obj);
+    }
+
+    let obj3 = {
+        internal: {},
+        interArr: []
+    }
+    deepFreeze(obj3)
+
+
+    console.log('Object.preventExtensions-------------------------------------------------------------------')
+    let object2 = {
+        a: 1, b: 2, c: 3, internal: {},
+        interArr: []
+    };
+    let objPreventExt = Object.preventExtensions(object2)//可删除属性,可更改值
+
+    // Uncaught TypeError: Cannot define property new, object is not extensible
+    //     at Function.defineProperty (<anonymous>)
+    // Object.defineProperty(object2,'new',{value:99})
+
+    console.log('Object.seal-------------------------------------------------------------------')
+    let object3 = {
+        a: 1, b: 2, c: 3, internal: {
+            ia:99
+        },
+        interArr: []
+    };
+    let objSeal=Object.seal(object3)//不可删除属性，可更改值
+</script>

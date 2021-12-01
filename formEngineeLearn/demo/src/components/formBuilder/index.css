@@ -1,0 +1,25 @@
+.formBuilderWrapper{
+    display: flex;
+    padding: 20px;
+
+   
+}
+.formBuilderLeft{
+    flex: 2;
+}
+.itemSpan{
+    height: 40px;
+    width: 100px;
+    line-height: 40px;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+}
+.formBuilderCenter{
+    flex: 8;
+}
+.formBuilderRight{
+    flex: 2;
+}

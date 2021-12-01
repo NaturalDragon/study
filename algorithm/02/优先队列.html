@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  function Queue() {
+    this.dataSource = [];
+    this.dequeue = dequeue;
+    this.enqueue = enqueue;
+    this.front = front;
+    this.back = back;
+    this.toString = toString;
+    this.isEmpty = isEmpty;
+    this.count = count;
+  }
+  function enqueue(element) {
+    this.dataSource.push(element);
+  }
+  function dequeue() {
+    let priority = this.dataSource[0].code;
+    let i = 0;
+    for (let index = 0; index < this.dataSource.length; index++) {
+      let currentCode = this.dataSource[index].code;
+      if (currentCode < priority) {
+        priority = currentCode;
+        i = index;
+      }
+    }
+    return this.dataSource.splice(i, 1);
+  }
+  function toString() {
+    var retStr = "";
+    for (var i = 0; i < this.dataStore.length; ++i) {
+      retStr += this.dataStore[i] + "\n";
+    }
+    return retStr;
+  }
+  function front() {
+    return this.dataStore[0];
+  }
+  function back() {
+    return this.dataStore[this.dataStore.length - 1];
+  }
+  function isEmpty() {
+    if (this.dataStore.length == 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  function count() {
+    return this.dataStore.length;
+  }
+
+  //优先队列
+
+  function Patient(name, code) {
+    this.name = name;
+    this.code = code;
+  }
+  let q2 = new Queue();
+  q2.enqueue(new Patient("a9", 9));
+  q2.enqueue(new Patient("a4", 4));
+  q2.enqueue(new Patient("a8", 8));
+  q2.enqueue(new Patient("a6", 6));
+  q2.enqueue(new Patient("a7", 7));
+  q2.enqueue(new Patient("a3", 3));
+  q2.enqueue(new Patient("a1", 1));
+  q2.enqueue(new Patient("a2", 2));
+</script>

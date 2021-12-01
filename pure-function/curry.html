@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>柯里化</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    const add = function (x) {
+        return function (y) {
+            return x + y;
+        }
+    }
+    function add1(a, b) {
+        return a + b;
+    }
+    var curry = fn =>
+        judge = (...args) =>
+            args.length === fn.length
+                ? fn(...args)
+                : (...arg) => judge(...args, ...arg)
+
+
+    var curry1 = fn => {
+        const judge = (...args) => {
+            return args.length === fn.length ?
+                fn(...args)
+                :
+                (...nextArgs) => {
+                    return judge(...args, ...nextArgs)
+                }
+        }
+        return judge
+    }
+    const curryAdd = curry1(function (x, y, z) {
+        return x + y + z;
+    })
+    curryAdd(1)(2)(3)
+
+
+    // const curry2 = function (fn) {
+    //     var args = [].slice.call(arguments, 1);
+    //     return function () {
+    //         var newArgs = args.concat([].slice.call(arguments))
+    //         return fn.apply(this, newArgs)
+    //     }
+    // }
+    // var addcurry=curry2(add1,1)
+    // addcurry(2)
+
+    function curry3(fn, args) {
+        var length = fn.length;
+        args = args || []
+        return function () {
+            var _args = args.slice(0), arg, i;
+            for (i = 0; i < arguments.length; i++) {
+                arg = arguments[i]
+                _args.push(arg)
+            }
+            if (_args.length < length) {
+                return curry3.call(this, fn, _args)
+            } else {
+                return fn.apply(this, _args)
+            }
+        }
+    }
+    var fn=curry3(function(a,b,c){
+        return a+b+c;
+    })
+   // fn(1,3,5)
+    fn(1)(3,5)
+</script>
