@@ -24,9 +24,15 @@
     function push(element) {
         this.dataSource[this.top++]=element
     }
+    /**
+     *pop() 方法虽然可以访问栈顶的元素，但是调用该方 法后，栈顶元素也从栈中被永久性地删除了 
+     */
     function pop() {
        return this.dataSource[--this.top]
     }
+    /**
+     * peek() 方法则只返回栈顶元素，而不删除它
+    */
     function peek() {
         return this.dataSource[this.top-1]
     }
