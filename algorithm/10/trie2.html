@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+class TrieNode{
+    constructor(){
+        this.children={}
+        this.isEnd=false
+    }
+}
+    class TrieTree {
+
+        constructor() {
+            this.root = new TrieNode()
+        }
+        insert(text) {
+            let node = this.root;
+            for (const char of text) {
+                if(!node.children[char]){
+                    node.children[char]=new TrieNode()
+                }
+                node=node.children[char]
+            }
+            node.isEnd=true
+        }
+        find(text) {
+            let node = this.root;
+            for (const char of text) {
+                if(!node.children[char])return false
+                node=node.children[char]
+            }
+            return node.isEnd
+        }
+        startWith(text){
+            let node = this.root;
+            for (const char of text) {
+                if(!node.children[char])return false
+                node=node.children[char]
+            }
+            return true
+        }
+    }
+    let trieTree = new TrieTree();
+    var strs = ["how", "hi", "her", "hello", "so", "see",'我是abc','a123'];
+    for (const str of strs) {
+        trieTree.insert(str)
+    }
+    for (let str of strs) {
+        console.log(trieTree.find(str));
+    }
+
+</script>

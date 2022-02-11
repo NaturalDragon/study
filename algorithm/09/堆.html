@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /*
+    大顶堆
+    */
+    class Heap {
+        a = [];//数组，下标从1开始存储数据
+        n;//堆可以存储的最大数据个数
+        count;//堆中已存储的数据个数
+        constructor(capacity) {
+            this.n = capacity;
+            this.count = 0;
+        }
+
+        insert(data) {
+            if (this.count > this.n) return;//堆满了
+            ++this.count;
+            this.a[this.count] = data;
+            let i = this.count;
+            while (i / 2 > 0 && this.a[i] > this.a[Math.floor(i / 2)]) {//自下往上堆化
+                this.swap(this.a, i, Math.floor(i / 2))//swap函数作用，交互下标为i和i/2的连个元素
+                i = Math.floor(i / 2)
+            }
+        }
+        swap(arr, i, j) {
+            let temp = arr[i];
+            arr[i] = arr[j]
+            arr[j] = temp
+        }
+        removeMax() {
+            if (this.count == 0) return -1//堆中没有数据
+            this.a[1] = this.a[this.count];
+            this.a.splice(this.count)
+            --this.count;
+            this.heapify(this.a, this.count, 1)
+        }
+
+        heapify(arr, n, i) {//自上往下堆化
+            while (true) {
+                let maxPos = i;
+                if (i * 2 <= n && arr[i] < arr[i * 2]) maxPos = i * 2
+                if (i * 2 + 1 <= n && arr[maxPos] < arr[i * 2 + 1]) maxPos = i * 2 + 1
+                if (maxPos === i) break;
+                this.swap(arr, i, maxPos)
+                i = maxPos
+            }
+        }
+        //建堆
+        buildHeap(arr){
+            let n=arr.length;
+            for(let i=Math.floor(n/2);i>=1;--i){
+               this.heapify(arr,n,i)
+            }
+        }
+        sort(arr){
+            //k表示元素的个数（减去1是因为堆下标从1开始）
+            let k=arr.length-1;
+            while(k>1){
+                this.swap(arr,1,k)
+                --k;
+                this.heapify(arr,k,1)
+            }
+        }
+    }
+
+    let heap = new Heap(30);
+    heap.insert(33)
+    heap.insert(27)
+    heap.insert(21)
+    heap.insert(16)
+    heap.insert(13)
+    heap.insert(15)
+    heap.insert(19)
+    heap.insert(5)
+    heap.insert(6)
+    heap.insert(7)
+    heap.insert(8)
+    heap.insert(1)
+    heap.insert(2)
+    heap.insert(12)
+
+    var testArr=[,2,1,12,8,7,6,5,33,27,17,21,13,15,19]
+    heap.buildHeap(testArr)
+</script>
